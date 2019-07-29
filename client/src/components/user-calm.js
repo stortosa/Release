@@ -52,7 +52,7 @@ export default class UserCalm extends Component {
   }
 
   getAllCalms = () => {
-    axios.get(`http://localhost:5000/newCalm`).then(responseFromApi => {
+    axios.get(`http://localhost:5000/allCalm`).then(responseFromApi => {
       this.setState({
         ListOfCalms: responseFromApi.data
       });

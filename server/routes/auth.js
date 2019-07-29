@@ -76,31 +76,25 @@ router.get('/currentuser', (req, res, next) => {
   }
 })
 
-
-// POST route => to create a new calm things
-// router.post('../', (req, res, next) => {
-//   Calm.create({
-//     title: req.body.title,
-//     description: req.body.description,
-//     tasks: [],
-//     owner: req.user._id <== !!!
-//   })
-//   .then(response => {
-//     res.json(response);
-//   })
-//   .catch(err => {
-//     res.json(err);
-//   })
-// });
-
 router.get('/logout', (req, res) => {
   req.logout();
   res.status(200).json({ message: 'logged out' })
 });
 
-
 router.use((err, req, res, next) => {
   res.status(500).json({ message: err.message });
 })
+
+// añadiendo calms
+router.post('/addCalms', (req, res, next) => {
+  Calm.create({
+    title: req.body.title,
+    description: req.body.description,
+    // timestamp:
+  })
+    .then(createdCalms => [
+      res.json(createdCalms)   //o {$push: {calms: calms_id}}
+    ])
+});
 
 module.exports = router;

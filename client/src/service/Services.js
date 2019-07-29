@@ -31,4 +31,9 @@ export default class AuthServices {
       .then(response => response.data)
   }
 
+  addCalms = (calms) => {
+    return this.service.post('/addCalms', {calms}, { withCredentials: true})
+    .then(response => response.data )
+  }
+
 }
