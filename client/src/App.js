@@ -5,7 +5,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Profile from './components/auth/Profile';
-import AuthServices from './Services';
+import AuthServices from './service/Services';
 import Navbar from './components/Navbar';
 import UserCalm from './components/user-calm';
 // import Fear from './components/emotions/fear/Fear';

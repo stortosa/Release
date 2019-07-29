@@ -37,8 +37,7 @@ app.use(cookieParser());
 
 app.use(cors({
   credentials: true,
-  origin: true
-  //  ['http://localhost:3000'] 
+  origin: ['http://localhost:3000'] 
 }));
 
 // Express View engine setup
@@ -88,7 +87,7 @@ app.use('/', index);
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 
-// const calmRoutes = require('./routes/calm-routes');
-// app.use('/api', calmRoutes);
+const calmRoutes = require('./routes/calm.routes');
+app.use('/api', calmRoutes);
 
 module.exports = app;

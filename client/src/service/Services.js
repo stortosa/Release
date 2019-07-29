@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+//ARCHIVO QUE CONECTA EL FRONT CON EL BACK
+
 export default class AuthServices {
   constructor() {
     this.service = axios.create({
-      baseURL: 'http://localhost:5000/auth',
+      baseURL: 'http://localhost:5000/auth',  //      baseURL: 'http://localhost:5000/auth',
       withCredentials: true
     })
   }
@@ -25,7 +27,7 @@ export default class AuthServices {
   }
 
   loggedin = () => {
-    return this.service.get('/currentUser')   // o poner ('/loggedin')
+    return this.service.get('/currentUser')   // o poner ('/loggedin') /currentUser
       .then(response => response.data)
   }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AuthServices from '../../Services';
+import AuthServices from '../../service/Services';
 import { Link, withRouter } from 'react-router-dom';
 // Redirect
 
@@ -37,20 +37,22 @@ class Login extends Component {
     return (
       <div>
         <h3>Please, login to our site</h3>
-        <h2>Login</h2>
-        <form className="" onSubmit={this.handleFormSubmit}>
-          <fieldset>
-            <label>Username:</label>
-            <input type="text" name="username" onChange={e => this.handleChange(e)} />
-          </fieldset>
+        <div className="loginBox">
+          <h2>Login</h2>
+          <form className="" onSubmit={this.handleFormSubmit}>
+            <fieldset>
+              <label>Username:</label>
+              <input type="text" name="username" onChange={e => this.handleChange(e)} />
+            </fieldset>
 
-          <fieldset>
-            <label>Password:</label>
-            <input type="password" name="password" onChange={e => this.handleChange(e)} />
-          </fieldset>
+            <fieldset>
+              <label>Password:</label>
+              <input type="password" name="password" onChange={e => this.handleChange(e)} />
+            </fieldset>
 
-          <input type="submit" value="Login" />
-        </form>
+            <input type="submit" value="Login" />
+          </form>
+        </div>
         <h1>{this.state.error ? 'Error' : ''}</h1>
 
         <p>Don't have account?

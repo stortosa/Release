@@ -31,3 +31,64 @@
     transform: rotate(360deg);
   }
 }
+
+/* SCSS del LOGIN */
+.loginBox a {
+  color: rgb(238, 231, 231);
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.loginBox {
+  /* // display: flex; */
+  position: relative;
+  align-content: center;
+  justify-content: center;
+  margin-top: 5%;
+  padding: 30px;
+  /* // top: 80%;
+  // left: 50%;
+  // transform: translate(-50%, 0%); */
+  width: 400px;
+  height: 500px;
+  box-sizing: border-box;
+  background: transparent;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.9);
+  /* // border-radius: 15px; */
+  transition: 0.5s;
+}
+
+.loginBox:hover {
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.loginBox input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.loginBox input[type="text"],
+.loginBox input[type="password"],
+.loginBox input[type="date"],
+.loginBox input[type="time"],
+.loginBox input[type="number"],
+.loginBox input[type="email"] {
+  border: none;
+  border-bottom: 2px solid #fff;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: #043074;
+  font-size: 16px;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+
+.loginBox a {
+  color: rgb(238, 231, 231);
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+}
