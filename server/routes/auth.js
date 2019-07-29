@@ -91,6 +91,7 @@ router.post('/addCalms', (req, res, next) => {
   Calm.create({
     title: req.body.title,
     description: req.body.description,
+    createdBy: req.body.user,
     // timestamp:
   })
     .then(createdCalms => {
@@ -98,6 +99,7 @@ router.post('/addCalms', (req, res, next) => {
     })
 });
 
+//añadiendo goals
 router.post('/addGoals', (req, res, next) => {
   Goals.create({
     title: req.body.title,
@@ -109,6 +111,17 @@ router.post('/addGoals', (req, res, next) => {
       // console.log(createdGoal)
       res.json(createdGoal)
     })
+});
+
+router.get('/userGoals',(req,res, next)=>{
+  Goals.find({
+    createdBy: req.user._id,    
+  })
+  .then(foundGoal=>[
+    res.json(foundGoal)
+    
+  ])
+  .catch(err => console.log(err));
 });
 
 module.exports = router;

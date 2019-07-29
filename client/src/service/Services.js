@@ -41,4 +41,9 @@ export default class AuthServices {
   //   .then(response => response.data )
   // }
 
+  userGoals = () =>{
+    return this.service.get('/userGoals')
+    .then(response => response.data )
+
+  }
 }

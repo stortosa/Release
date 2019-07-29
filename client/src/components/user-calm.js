@@ -9,8 +9,8 @@ export default class UserCalm extends Component {
     this.state = {
       title: "",
       description: "",
-      task: [],       //cosas a mejorar.
-      listRecorded: []
+      isShowing: false,
+      loggedInUser: null
 
       // term: '',// esto es de la calmList que tendrá q ir a Mongo y vovler
       // items: []
@@ -23,18 +23,13 @@ export default class UserCalm extends Component {
     event.preventDefault();
     const title = this.state.title;
     const description = this.state.description;
-    const task = this.state.Task;
-    const listRecorded = this.state.ListRecorded;
-    const projectID = this.props.theProject._id;
-    // { title, description, projectID } => this is 'req.body' that will be received on the server side in this route, 
-    // so the names have to match
+    // const task = this.state.Task;
+    // const listRecorded = this.state.ListRecorded;
+    const user = this.state.loggedInUser
 
-    axios.post("http://localhost:5000/addCalms", { title, description, projectID })
-      .then(() => {
-        // after submitting the form, retrieve project one more time so the new task is displayed as well 
-        //              |
-        this.props.getTheProject();
-        this.setState({ title: "", description: "", task:[], listRecorded:[] });
+    axios.post("http://localhost:5000/auth/addCalms", { title, description })
+      .then((responsefromApi) => {
+        this.setState({ title: responsefromApi.data.title, description: responsefromApi.data.description });
       })
       .catch(error => console.log(error))
 
@@ -45,14 +40,25 @@ export default class UserCalm extends Component {
     // });
   }
 
+  // componentDidMount() {
+  //   this.service.loggedin()
+  //     .then(response => {
+  //       this.setState({
+  //         loggedInUser: response
+  //       })
+  //     })
+  //   console.log(this.state.loggedInUser)
+  // }
+
   onChange = (event) => {
+    console.log(this)
     // this.setState({ term: event.target.value });
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
 
   getAllCalms = () => {
-    axios.post(`http://localhost:5000/addCalms`).then(responseFromApi => {
+    axios.post(`http://localhost:5000/auth/addCalms`).then(responseFromApi => {
       this.setState({
         ListOfCalms: responseFromApi.data
       });
@@ -63,6 +69,13 @@ export default class UserCalm extends Component {
     this.getAllCalms();
   }
 
+  toggleForm = () => {
+    if (!this.state.isShowing) {
+      this.setState({ isShowing: true });
+    } else {
+      this.setState({ isShowing: false });
+    }
+  }
 
   render() {
     return (
@@ -71,14 +84,14 @@ export default class UserCalm extends Component {
         <div>
           <form className="" onSubmit={this.onSubmit}>
             <label>Title:</label>
-            <input type="text" name="title" value={this.state.getAllCalms.title} onChange={this.onChange} />
-            
-            <label>Description:</label>
-            <textarea name="description" value={this.state.getAllCalms.description} onChange={this.onChange} />
+            <input type="text" name="title" value={this.state.title} onChange={this.onChange} />
 
-            <label>Task:</label>
+            <label>Description:</label>
+            <textarea name="description" value={this.state.description} onChange={this.onChange} />
+
+            {/* <label>Task:</label>
             <input type="text" name="task" value={this.state.getAllCalms.task} onChange={this.onChange} />
-            
+
             {/* <label>Title:</label>
             <input type="text" name="listRecorded" value={this.state.listRecorded} onChange={this.onChange} />
              */}
@@ -86,17 +99,15 @@ export default class UserCalm extends Component {
           </form>
           <UserCalmList items={this.state.items} />
         </div>
-        <div>
-          {this.state.getAllCalms.map((items, idx) => (
+        {/* <div> */}
+          {/* {this.state.ListOfCalms.map((items, idx) => (
             <ul key={idx}>
               <li>{items.title}</li>
               <li>{items.description}</li>
-              <li>{items.task}</li>
-              <li>{items.listRecorded}</li>
             </ul>
 
-          ))}
-        </div>
+          ))} */}
+        {/* </div> */}
       </div>
     )
   }
