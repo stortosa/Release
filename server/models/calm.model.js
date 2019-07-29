@@ -8,9 +8,6 @@ const calmSchema = new Schema({
   },
   title: String,
   description: String,
-  Task: [String],       //cosas a mejorar.
-  ListRecorded:[String],
-
 },
   {
     timestamps: {
@@ -21,17 +18,3 @@ const calmSchema = new Schema({
 
 const CalmMod = mongoose.model('CalmMod', calmSchema);
 module.exports = CalmMod;
-
-
-  // tasks: [{
-  //   type: Schema.Type.ObjectId,
-  //   ref: 'Task',
-  // }],
-  // listRecods: [{
-  //   type: Schema.Type.ObjectId,
-  //   ref: 'ListRecorded',
-  // }],
-  // listBetter: [{
-  //   type: Schema.Type.ObjectId,
-  //   ref: 'ListBetter',
-  // }]

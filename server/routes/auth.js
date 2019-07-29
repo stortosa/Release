@@ -3,6 +3,7 @@ const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
 const Goals = require("../models/goal.model");
+const Calms = require("../models/calm.model")
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -88,7 +89,7 @@ router.use((err, req, res, next) => {
 
 // añadiendo calms
 router.post('/addCalms', (req, res, next) => {
-  Calm.create({
+  Calms.create({
     title: req.body.title,
     description: req.body.description,
     createdBy: req.body.user,
@@ -97,6 +98,18 @@ router.post('/addCalms', (req, res, next) => {
     .then(createdCalms => {
       res.json(createdCalms)   //o {$push: {calms: calms_id}}
     })
+});
+
+//mostrando calms
+router.get('/userCalm',(req,res, next)=>{
+  Calm.find({
+    createdBy: req.user._id,    
+  })
+  .then(foundCalm=>[
+    res.json(foundCalm)
+    
+  ])
+  .catch(err => console.log(err));
 });
 
 //añadiendo goals
@@ -113,6 +126,7 @@ router.post('/addGoals', (req, res, next) => {
     })
 });
 
+//mostrando goals
 router.get('/userGoals',(req,res, next)=>{
   Goals.find({
     createdBy: req.user._id,    
@@ -123,5 +137,6 @@ router.get('/userGoals',(req,res, next)=>{
   ])
   .catch(err => console.log(err));
 });
+
 
 module.exports = router;

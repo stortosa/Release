@@ -22,8 +22,7 @@ export default class AddGoal extends Component {
     const description = this.state.description;
     const user = this.state.loggedInUser
 
-
-    axios.post("http://localhost:5000/auth/addGoals", { title, description, user }) // o newGoal
+    axios.post("http://localhost:5000/auth/addGoals", { title, description, user })
       .then((responsefromApi) => {
 
         let cloneallGoals = [...this.state.allGoals];

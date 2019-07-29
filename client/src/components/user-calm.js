@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import UserCalmList from './user-calm-list';
 import axios from 'axios';
 import AuthServices from '../service/Services'
 
@@ -10,10 +9,8 @@ export default class UserCalm extends Component {
       title: "",
       description: "",
       isShowing: false,
-      loggedInUser: null
-
-      // term: '',// esto es de la calmList que tendrá q ir a Mongo y vovler
-      // items: []
+      loggedInUser: null,
+      allCalms: []
     };
     this.service = new AuthServices();
 
@@ -23,50 +20,50 @@ export default class UserCalm extends Component {
     event.preventDefault();
     const title = this.state.title;
     const description = this.state.description;
-    // const task = this.state.Task;
-    // const listRecorded = this.state.ListRecorded;
     const user = this.state.loggedInUser
 
-    axios.post("http://localhost:5000/auth/addCalms", { title, description })
+    axios.post("http://localhost:5000/auth/addCalms", { title, description, user })
       .then((responsefromApi) => {
-        this.setState({ title: responsefromApi.data.title, description: responsefromApi.data.description });
+
+        let cloneallCamls = [...this.state.allCalms];
+
+        cloneallCamls.unshift(responsefromApi.data)  //unshift o push
+        console.log(responsefromApi)
+        this.setState({
+          ...this.state,
+          allCalms: cloneallCamls,
+
+        })
       })
       .catch(error => console.log(error))
-
-
-    // this.setState({
-    //   term: '',
-    //   items: [...this.state.items, this.state.term]
-    // });
   }
 
-  // componentDidMount() {
-  //   this.service.loggedin()
-  //     .then(response => {
-  //       this.setState({
-  //         loggedInUser: response
-  //       })
-  //     })
-  //   console.log(this.state.loggedInUser)
-  // }
+  getUserCalms = () => {
+    this.service.userCalms()
+      .then(response => {
+        console.log(response)
+        this.setState({
+          ...this.state,
+          allCalms: response,
+        })
+      })
+  }
+  componentDidMount() {
+    this.service.loggedin()
+      .then(response => {
+        this.setState({
+          loggedInUser: response
+        })
+      })
+    this.getUserCalms()
+
+    // console.log(this.state.loggedInUser)
+  }
 
   onChange = (event) => {
-    console.log(this)
-    // this.setState({ term: event.target.value });
+    // console.log(this)
     const { name, value } = event.target;
     this.setState({ [name]: value });
-  }
-
-  getAllCalms = () => {
-    axios.post(`http://localhost:5000/auth/addCalms`).then(responseFromApi => {
-      this.setState({
-        ListOfCalms: responseFromApi.data
-      });
-    });
-  };
-
-  componentDidMount() {
-    this.getAllCalms();
   }
 
   toggleForm = () => {
@@ -77,37 +74,51 @@ export default class UserCalm extends Component {
     }
   }
 
+  showAddCalmForm = () => {
+    if (this.state.isShowing) {
+      return (
+        <div>
+          <h3>Add Calm</h3>
+          <form className="" onSubmit={this.onSubmit}>
+            <label>Title:</label>
+            <input type="text" name="title" value={this.state.title} onChange={e => this.onChange(e)} />
+            <label>Description:</label>
+            <textarea name="description" value={this.state.description} onChange={e => this.onChange(e)} />
+
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+      )
+    }
+  }
+
   render() {
     return (
       <div>
         <h1>Welcome to Calm</h1>
-        <div>
-          <form className="" onSubmit={this.onSubmit}>
-            <label>Title:</label>
-            <input type="text" name="title" value={this.state.title} onChange={this.onChange} />
+        <hr />
+        <button onClick={() => this.toggleForm()}> Add Calm </button>
+        {this.showAddCalmForm()}
 
-            <label>Description:</label>
-            <textarea name="description" value={this.state.description} onChange={this.onChange} />
-
-            {/* <label>Task:</label>
-            <input type="text" name="task" value={this.state.getAllCalms.task} onChange={this.onChange} />
-
-            {/* <label>Title:</label>
-            <input type="text" name="listRecorded" value={this.state.listRecorded} onChange={this.onChange} />
-             */}
-            <button>Submit</button>
-          </form>
-          <UserCalmList items={this.state.items} />
-        </div>
-        {/* <div> */}
-          {/* {this.state.ListOfCalms.map((items, idx) => (
+        <ol className="calms-list">
+          {
+            this.state.allCalms.map(calm =>
+              <li key={calm._id}>
+                {calm.title}--{calm.description}
+              </li>
+            )
+          }
+        </ol>
+        {/* <div>
+          {this.state.allCalms.map((calm, idx) => (
             <ul key={idx}>
-              <li>{items.title}</li>
-              <li>{items.description}</li>
+              <li>{calm.title}</li>
+              <li>{calm.description}</li>
             </ul>
 
-          ))} */}
-        {/* </div> */}
+          ))}
+        </div> */}
+        <h1>DON´T FORGET IT</h1>
       </div>
     )
   }

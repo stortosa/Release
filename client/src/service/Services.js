@@ -31,19 +31,18 @@ export default class AuthServices {
       .then(response => response.data)
   }
 
-  addCalms = (calms) => {
-    return this.service.post('/addCalms', {calms}, { withCredentials: true})
-    .then(response => response.data )
-  }
-
-  // addCalms = (calms) => {
-  //   return this.service.post('/addGoals', {calms}, { withCredentials: true})
+  // addCalms = () => {
+  //   return this.service.post('/addCalms', { withCredentials: true})
   //   .then(response => response.data )
   // }
+
+  userCalms = () => {
+    return this.service.get('/userCalms', { withCredentials: true})  //addCalms  o userCalms
+    .then(response => response.data )
+  }
 
   userGoals = () =>{
     return this.service.get('/userGoals')
     .then(response => response.data )
-
   }
 }
