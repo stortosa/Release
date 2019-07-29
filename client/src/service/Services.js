@@ -36,4 +36,9 @@ export default class AuthServices {
     .then(response => response.data )
   }
 
+  // addCalms = (calms) => {
+  //   return this.service.post('/addGoals', {calms}, { withCredentials: true})
+  //   .then(response => response.data )
+  // }
+
 }

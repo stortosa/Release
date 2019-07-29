@@ -1,35 +1,45 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import AuthService from '../../service/Services'
 
 export default class AddGoal extends Component {
   constructor(props) {
+    // console.log(props)
     super(props)
-
-    this.state = { title: "", description: "", isShowing: false };
+    this.state = { title: "", description: "", isShowing: false, loggedInUser: null };
+  this.service = new AuthService();
   }
 
   handleFormSubmit = (event) => {
     event.preventDefault();
     const title = this.state.title;
     const description = this.state.description;
-    const projectID = this.props.theProject._id; // <== we need to know to which project the created task belong, so we need to get its 'id'
-    // it has to be the 'id' because we are referencing project 
-    // by its id in the task model on the server side ( project: {type: Schema.Types.ObjectId, ref: 'Project'})
-
-    // { title, description, projectID } => this is 'req.body' that will be received on the server side in this route, 
-    // so the names have to match
-    axios.post("http://localhost:5000/new", { title, description, projectID }) // o newGoal
-      .then(() => {
+    const user = this.state.loggedInUser
+    
+    // const projectID = this.props.theProject.id; // <== we need to know to which project the created task belong, so we need to get its 'id'
+   
+    axios.post("http://localhost:5000/auth/addGoals", { title, description, user }) // o newGoal
+      .then((responsefromApi) => {
         // after submitting the form, retrieve project one more time so the new task is displayed as well 
         //              |
-        this.props.getTheProject();
-        this.setState({ title: "", description: "" });
+        // this.props.getTheProject();
+        // console.log(responsefromApi);
+        this.setState({ title: responsefromApi.data.title, description: responsefromApi.data.description });
       })
       .catch(error => console.log(error))
   }
 
+  componentDidMount(){
+    this.service.loggedin()
+    .then(response=>{
+      this.setState({
+        loggedInUser: response
+      })
+    })
+  console.log(this.state.loggedInUser)}
+
   handleChange = (event) => {
+    console.log(this)
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }

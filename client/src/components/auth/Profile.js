@@ -39,6 +39,7 @@ class Profile extends Component {
         <button onClick={(e) => { this.props.createList(e) }}>STRONG</button>
 
         <Link to="/calm" className="">Calm</Link>
+        <Link to="/AddGoal" className="">Add Goal</Link>
         <Link to="/fear" className="">Fear</Link>
         <Link to="/happiness" className="">Happiness</Link>
         <Link to="/rage" className="">Rage</Link>

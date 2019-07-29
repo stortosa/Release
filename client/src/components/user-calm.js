@@ -29,7 +29,7 @@ export default class UserCalm extends Component {
     // { title, description, projectID } => this is 'req.body' that will be received on the server side in this route, 
     // so the names have to match
 
-    axios.post("http://localhost:5000/ListOfCalms", { title, description, projectID })
+    axios.post("http://localhost:5000/addCalms", { title, description, projectID })
       .then(() => {
         // after submitting the form, retrieve project one more time so the new task is displayed as well 
         //              |
@@ -52,7 +52,7 @@ export default class UserCalm extends Component {
   }
 
   getAllCalms = () => {
-    axios.get(`http://localhost:5000/allCalm`).then(responseFromApi => {
+    axios.post(`http://localhost:5000/addCalms`).then(responseFromApi => {
       this.setState({
         ListOfCalms: responseFromApi.data
       });
@@ -71,17 +71,17 @@ export default class UserCalm extends Component {
         <div>
           <form className="" onSubmit={this.onSubmit}>
             <label>Title:</label>
-            <input type="text" name="title" value={this.state.ListOfCalms.title} onChange={this.onChange} />
+            <input type="text" name="title" value={this.state.getAllCalms.title} onChange={this.onChange} />
             
             <label>Description:</label>
-            <textarea name="description" value={this.state.ListOfCalms.description} onChange={this.onChange} />
+            <textarea name="description" value={this.state.getAllCalms.description} onChange={this.onChange} />
 
             <label>Task:</label>
-            <input type="text" name="task" value={this.state.ListOfCalms.task} onChange={this.onChange} />
+            <input type="text" name="task" value={this.state.getAllCalms.task} onChange={this.onChange} />
             
-            <label>Title:</label>
+            {/* <label>Title:</label>
             <input type="text" name="listRecorded" value={this.state.listRecorded} onChange={this.onChange} />
-            
+             */}
             <button>Submit</button>
           </form>
           <UserCalmList items={this.state.items} />

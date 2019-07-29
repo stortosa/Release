@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
+const Goals = require("../models/goal.model");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -92,9 +93,22 @@ router.post('/addCalms', (req, res, next) => {
     description: req.body.description,
     // timestamp:
   })
-    .then(createdCalms => [
+    .then(createdCalms => {
       res.json(createdCalms)   //o {$push: {calms: calms_id}}
-    ])
+    })
+});
+
+router.post('/addGoals', (req, res, next) => {
+  Goals.create({
+    title: req.body.title,
+    description: req.body.description,
+    createdBy: req.body.user,
+    // timestamp:
+  })
+    .then(createdGoal=>{
+      // console.log(createdGoal)
+      res.json(createdGoal)
+    })
 });
 
 module.exports = router;
