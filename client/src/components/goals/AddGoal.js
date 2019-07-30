@@ -37,6 +37,7 @@ export default class AddGoal extends Component {
         // this.setState({ title: cloneallGoals.data.title, description: cloneallGoals.data.description });
       })
       .catch(error => console.log(error))
+      this.getUserGoals()
   }
 
   getUserGoals = () => {
@@ -75,6 +76,17 @@ export default class AddGoal extends Component {
     }
   }
 
+  deleteGoal = (e, goal_id) =>{
+    e.preventDefault();
+    this.service.removeGoal(goal_id)
+    .then(x =>{
+      // this.setState({
+      //   ...this.state,
+
+      // })
+    })
+    this.getUserGoals()
+  }
   showAddGoalForm = () => {
     if (this.state.isShowing) {
       return (
@@ -105,6 +117,7 @@ export default class AddGoal extends Component {
             this.state.allGoals.map(goal =>
               <li key ={goal._id}>
                 {goal.title}--{goal.description}
+                <button onClick={e => this.deleteGoal(e, goal._id)}> Delete</button>
               </li>
             )
           }

@@ -5,11 +5,18 @@
 // export default class goalsServices {   //AuthServices
 //   constructor() {
 //     this.service = axios.create({
-//       baseURL: 'http://localhost:5000/addGoals',  //      baseURL: 'http://localhost:5000/auth',
+//       baseURL: 'http://localhost:5000/goals.routes',  // O 'http://localhost:5000/goals.routes'
 //       withCredentials: true
 //     })
 //   }
 
+//   userGoals = () =>{
+//     return this.service.get('/userGoals', { withCredentials: true})
+//     .then(response => response.data )
+//   }
+// }
+
+  //CODIGO ANTIGÜO
 //   postGoals = (goals, user) => {
 //     return this.service.post('postGoals/{user_id}', { goals, user }, { withCredentials: true })
 //       .then(response => response.data)
@@ -34,6 +41,3 @@
 //     return this.service.post('deleteGoals', { goals }, { withCredentials: true })
 //       .then(response => response.data)
 //   }
-
-// }
-

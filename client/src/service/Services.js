@@ -5,7 +5,7 @@ import axios from 'axios';
 export default class AuthServices {
   constructor() {
     this.service = axios.create({
-      baseURL: 'http://localhost:5000/auth',  //      baseURL: 'http://localhost:5000/auth',
+      baseURL: 'http://localhost:5000/auth',
       withCredentials: true
     })
   }
@@ -31,6 +31,8 @@ export default class AuthServices {
       .then(response => response.data)
   }
 
+
+
   // addCalms = () => {
   //   return this.service.post('/addCalms', { withCredentials: true})
   //   .then(response => response.data )
@@ -44,5 +46,10 @@ export default class AuthServices {
   userGoals = () =>{
     return this.service.get('/userGoals')
     .then(response => response.data )
+  }
+
+  removeGoal = (goalId) =>{
+    return this.service.delete('/removeGoal', {data: {goalId:goalId }})
+    .then(response => response.data)
   }
 }

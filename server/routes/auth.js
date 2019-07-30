@@ -138,5 +138,18 @@ router.get('/userGoals',(req,res, next)=>{
   .catch(err => console.log(err));
 });
 
+router.delete('/removeGoal',(req,res, next)=>{
+  Goals.findByIdAndRemove(req.body.goalId)
+  //   )({
+  //   // createdBy: req.user._id,    
+
+  // })
+  .then(foundGoal=>[
+    res.json(foundGoal)
+    
+  ])
+  .catch(err => console.log(err));
+});
+
 
 module.exports = router;
