@@ -82,7 +82,6 @@ export default class AddGoal extends Component {
     .then(x =>{
       // this.setState({
       //   ...this.state,
-
       // })
     })
     this.getUserGoals()
@@ -95,6 +94,10 @@ export default class AddGoal extends Component {
           <form onSubmit={this.handleFormSubmit}>
             <label>Title:</label>
             <input type="text" name="title" value={this.state.title} onChange={e => this.handleChange(e)} />
+            
+            {/* <label>Favourite Color:</label>
+            <textarea name="color" value={this.state.color} onChange={e => this.handleChange(e)} /> */}
+
             <label>Description:</label>
             <textarea name="description" value={this.state.description} onChange={e => this.handleChange(e)} />
 
@@ -123,8 +126,6 @@ export default class AddGoal extends Component {
           }
         </ol>
       </div>
-
-
     )
   }
 }

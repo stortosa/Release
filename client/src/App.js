@@ -9,11 +9,11 @@ import AuthServices from './service/Services';
 import Navbar from './components/Navbar';
 import UserCalm from './components/user-calm';
 import AddGoal from './components/goals/AddGoal';
+import Record from './components/Record';
 // import Fear from './components/emotions/fear/Fear';
 // import Happiness from './components/emotions/happiness/Happiness';
 // import Rage from './components/emotions/rage/Rage';
 // import Sadness from './components/emotions/sadness/Sadness'
-// import Contents from './components/Contents'
 
 
 
@@ -25,7 +25,6 @@ class App extends Component {
       loggedInUser: null,
     }
     this.service = new AuthServices();
-
   }
 
   getTheUser = (userObj) => {
@@ -63,6 +62,8 @@ class App extends Component {
                 <Route exact path='/profile' render={() => <Profile logout={this.logout} {...this.state.loggedInUser} />} />
                 <Route exact path='/calm' render={() => <UserCalm logout={this.logout} {...this.state.loggedInUser} />} />
                 <Route exact paht='/addGoal' render={() => <AddGoal logout={this.logout} {...this.state.loggedInUser} />} />
+                <Route exact paht='/demo' render={() => <Record logout={this.logout} {...this.state.loggedInUser} />} />
+
                 {/* <Route exact path='/fear' render={() => <Fear logout={this.logout} />} />
                 <Route exact path='/happiness' render={() => <Happiness logout={this.logout} />} />
                 <Route exact path='/rage' render={() => <Rage logout={this.logout} />} />

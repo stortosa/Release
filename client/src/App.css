@@ -92,3 +92,9 @@
   font-weight: bold;
   text-decoration: none;
 }
+
+.btn-box {
+  width: 500px;
+  text-align: center;
+  padding: 2px;
+}
