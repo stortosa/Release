@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import AuthServices from '../service/Services'
+import AuthServices from '../service/Services';
+import { useTransition, animated } from 'react-spring'
+
 
 export default class UserCalm extends Component {
   constructor(props) {
@@ -110,17 +112,26 @@ export default class UserCalm extends Component {
         <hr />
         <button onClick={() => this.toggleForm()}> Add Calm </button>
         {this.showAddCalmForm()}
-        <div>
-          <ol className="">
+        <div className="ContCalmList">
+          <ol className="todoListMain">
             {
               this.state.allCalms.map(calm =>
-                <li key={calm._id}>
+                <li className="theList" key={calm._id}>
                   {calm.title}--{calm.description}
                   <button onClick={e => this.deleteCalm(e, calm._id)}> Delete</button>
                 </li>
               )
             }
           </ol>
+          useTransition(items, items => items.id, {
+            enter: item => [{opacity: item.opacity, height: item.height}, {life: '100%'}],
+  leave: item => async (next, cancel) => {
+            await next({ life: '0%' })
+    await next({opacity: 0})
+    await next({height: 0})
+              },
+  from: {life: '0%', opacity: 0, height: 0}
+                })
         </div>
 
         <h1>DON´T FORGET IT</h1>

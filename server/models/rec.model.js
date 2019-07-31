@@ -7,8 +7,11 @@ const recSchema = new Schema({
     ref: "User"
   },
   title: String,
-  listRecorded:[String],
-
+  recorded:[String],
+  audioType: String,
+  status: String,
+  audioSrc: String,
+  timeslice: Number,
 },
   {
     timestamps: {

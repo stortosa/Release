@@ -27,7 +27,6 @@ const login = (req, user) => {
 }
 
 
-
 // SIGNUP
 router.post('/signup', (req, res, next) => {
 
@@ -102,15 +101,24 @@ router.post('/addCalms', (req, res, next) => {
 });
 
 //mostrando calms
-router.get('/userCalms',(req,res, next)=>{
+router.get('/userCalms', (req, res, next) => {
   Calms.find({
-    createdBy: req.user._id,    
+    createdBy: req.user._id,
   })
-  .then(foundCalm=>
-    res.json(foundCalm)
-    
-  )
-  .catch(err => console.log(err));
+    .then(foundCalm =>
+      res.json(foundCalm)
+
+    )
+    .catch(err => console.log(err));
+});
+
+//borrando calms
+router.delete('/removeCalms', (req, res, next) => {
+  Calms.findByIdAndRemove(req.body.calmId)
+    .then(foundCalm => [
+      res.json(foundCalm)
+    ])
+    .catch(err => console.log(err));
 });
 
 //añadiendo goals
@@ -121,36 +129,73 @@ router.post('/addGoals', (req, res, next) => {
     createdBy: req.body.user,
     // timestamp:
   })
-    .then(createdGoal=>{
+    .then(createdGoal => {
       // console.log(createdGoal)
       res.json(createdGoal)
     })
 });
 
 //mostrando goals
-router.get('/userGoals',(req,res, next)=>{
+router.get('/userGoals', (req, res, next) => {
   Goals.find({
-    createdBy: req.user._id,    
+    createdBy: req.user._id,
   })
-  .then(foundGoal=>[
-    res.json(foundGoal)
-    
-  ])
-  .catch(err => console.log(err));
+    .then(foundGoal => [
+      res.json(foundGoal)
+
+    ])
+    .catch(err => console.log(err));
 });
 
-router.delete('/removeGoal',(req,res, next)=>{
+//Borrando goals
+router.delete('/removeGoal', (req, res, next) => {
   Goals.findByIdAndRemove(req.body.goalId)
-  //   )({
-  //   // createdBy: req.user._id,    
-
-  // })
-  .then(foundGoal=>[
-    res.json(foundGoal)
-    
-  ])
-  .catch(err => console.log(err));
+    //   )({
+    //   // createdBy: req.user._id,    
+    // })
+    .then(foundGoal => [
+      res.json(foundGoal)
+    ])
+    .catch(err => console.log(err));
 });
 
+// //Añandiendo demos de record
+// router.post('/addDemos', (req, res, next) => {
+//   Goals.create({
+//     title: req.body.title,
+//     description: req.body.description,
+//     createdBy: req.body.user,
+//     // timestamp:
+//   })
+//     .then(createdGoal => {
+//       // console.log(createdGoal)
+//       res.json(createdGoal)
+//     })
+// });
+
+//Añadiendo demos
+router.post('/addDemos', (req, res, next)=>{
+  Demo.create({
+    audioSrc: req.body.audioSrc
+  })
+  .then(createdDemo =>{
+    res.json(createdDemo)
+  })
+})
+
+//Mostrando Demos
+router.get('/userDemos', (req, res, next) => {
+  Demo.find({
+    createdBy: req.user._id,
+  })
+    .then(foundDemo => [
+      res.json(foundDemo)
+
+    ])
+    .catch(err => console.log(err));
+});
+
+
+//borrardo demos
 
 module.exports = router;
