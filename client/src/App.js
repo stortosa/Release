@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import './App.css';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Redirect, Route, withRouter } from 'react-router-dom';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Profile from './components/auth/Profile';
@@ -9,13 +9,7 @@ import AuthServices from './service/Services';
 import Navbar from './components/Navbar';
 import UserCalm from './components/user-calm';
 import AddGoal from './components/goals/AddGoal';
-// import Record from './components/Demo';
 import Demo from './components/Demo'
-// import Fear from './components/emotions/fear/Fear';
-// import Happiness from './components/emotions/happiness/Happiness';
-// import Rage from './components/emotions/rage/Rage';
-// import Sadness from './components/emotions/sadness/Sadness'
-
 
 
 class App extends Component {
@@ -47,20 +41,18 @@ class App extends Component {
       })
   }
 
-  fetchUser = ()=>{
+  fetchUser = () => {
     this.service.loggedin()
-    .then((data)=>{
-      if(data!=""){
-        this.setState({...this.state,loggedInUser:data})
-      }
-    })
+      .then((data) => {
+        if (data != "") {
+          this.setState({ ...this.state, loggedInUser: data })
+        }
+      })
   }
 
-  componentDidMount = ()=>{
+  componentDidMount = () => {
     this.fetchUser()
   }
-
-  
 
   render() {
     // this.fetchUser()
@@ -70,21 +62,15 @@ class App extends Component {
       //en este caso mostramos los contenidos ya que hay usuario
       return (
         <React.Fragment>
+          <Redirect to="/profile" />
           <div className="App">
             <header className="App-header">
               <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
-              {/* aqui simplemente se muestra un lorem ipsum genérico para que veáis contenidos que solo se muestran a usuarios logeados */}
               <Switch>
                 <Route exact path='/profile' render={() => <Profile logout={this.logout} {...this.state.loggedInUser} />} />
                 <Route exact path='/calm' render={() => <UserCalm logout={this.logout} {...this.state.loggedInUser} />} />
                 <Route exact path='/addGoal' render={() => <AddGoal logout={this.logout} {...this.state.loggedInUser} />} />
                 <Route exact path='/demo' render={() => <Demo logout={this.logout} {...this.state.loggedInUser} />} />
-
-                {/* <Route exact path='/fear' render={() => <Fear logout={this.logout} />} />
-                <Route exact path='/happiness' render={() => <Happiness logout={this.logout} />} />
-                <Route exact path='/rage' render={() => <Rage logout={this.logout} />} />
-                <Route exact path='/sadness' render={() => <Sadness logout={this.logout} />} /> */}
-
               </Switch>
             </header>
           </div>

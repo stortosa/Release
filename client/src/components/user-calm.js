@@ -23,7 +23,7 @@ export default class UserCalm extends Component {
     const user = this.state.loggedInUser
 
     this.service.addCalms(title, description, user)
-    .then((responsefromApi) => {
+      .then((responsefromApi) => {
 
         let cloneallCamls = [...this.state.allCalms];
 
@@ -48,6 +48,7 @@ export default class UserCalm extends Component {
         })
       })
   }
+
   componentDidMount() {
     this.service.loggedin()
       .then(response => {
@@ -73,6 +74,17 @@ export default class UserCalm extends Component {
     }
   }
 
+  deleteCalm = (e, calm_id) => {
+    e.preventDefault();
+    this.service.removeCalms(calm_id)
+      .then(x => {
+        // this.setState({
+        //   ...this.state,
+        // })
+      })
+    this.getUserCalms()
+  }
+
   showAddCalmForm = () => {
     if (this.state.isShowing) {
       return (
@@ -93,21 +105,24 @@ export default class UserCalm extends Component {
 
   render() {
     return (
-      <div>
+      <div className="">
         <h1>Welcome to Calm</h1>
         <hr />
         <button onClick={() => this.toggleForm()}> Add Calm </button>
         {this.showAddCalmForm()}
+        <div>
+          <ol className="">
+            {
+              this.state.allCalms.map(calm =>
+                <li key={calm._id}>
+                  {calm.title}--{calm.description}
+                  <button onClick={e => this.deleteCalm(e, calm._id)}> Delete</button>
+                </li>
+              )
+            }
+          </ol>
+        </div>
 
-        <ol className="calms-list">
-          {
-            this.state.allCalms.map(calm =>
-              <li key={calm._id}>
-                {calm.title}--{calm.description}
-              </li>
-            )
-          }
-        </ol>
         <h1>DON´T FORGET IT</h1>
       </div>
     )

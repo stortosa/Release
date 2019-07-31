@@ -86,6 +86,7 @@ export default class AddGoal extends Component {
       })
     this.getUserGoals()
   }
+
   showAddGoalForm = () => {
     if (this.state.isShowing) {
       return (
@@ -117,7 +118,7 @@ export default class AddGoal extends Component {
 
         <ol className="goals-list">
           {
-            this.state.allGoals.map((goal, idx) =>{
+            this.state.allGoals.map((goal, idx) => {
               return (<li key={idx}>
                 {goal.title}--{goal.description}
                 <button onClick={e => this.deleteGoal(e, goal._id)}> Delete</button>
