@@ -95,6 +95,10 @@
 
 .btn-box {
   width: 500px;
+  height: 100px;
   text-align: center;
   padding: 2px;
+}
+.btn-box button {
+  padding: 10px;
 }

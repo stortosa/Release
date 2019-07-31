@@ -3,7 +3,8 @@ const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
 const Goals = require("../models/goal.model");
-const Calms = require("../models/calm.model")
+const Calms = require("../models/calm.model");
+const Demo = require("../models/rec.model");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -101,14 +102,14 @@ router.post('/addCalms', (req, res, next) => {
 });
 
 //mostrando calms
-router.get('/userCalm',(req,res, next)=>{
-  Calm.find({
+router.get('/userCalms',(req,res, next)=>{
+  Calms.find({
     createdBy: req.user._id,    
   })
-  .then(foundCalm=>[
+  .then(foundCalm=>
     res.json(foundCalm)
     
-  ])
+  )
   .catch(err => console.log(err));
 });
 

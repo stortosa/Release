@@ -1,11 +1,12 @@
 import axios from 'axios';
+require ('dotenv').config();
 
 //ARCHIVO QUE CONECTA EL FRONT CON EL BACK
 
 export default class AuthServices {
   constructor() {
     this.service = axios.create({
-      baseURL: 'http://localhost:5000/auth',
+      baseURL:  `${process.env.REACT_APP_URL}/auth`,   //'http://localhost:5000/auth',
       withCredentials: true
     })
   }
@@ -33,13 +34,13 @@ export default class AuthServices {
 
 
 
-  // addCalms = () => {
-  //   return this.service.post('/addCalms', { withCredentials: true})
-  //   .then(response => response.data )
-  // }
+  addCalms = (title, description, user) => {
+    return this.service.post('/addCalms',{ title, description, user })
+    .then(response => response.data )
+  }
 
   userCalms = () => {
-    return this.service.get('/userCalms', { withCredentials: true})  //addCalms  o userCalms
+    return this.service.get('/userCalms')  //addCalms  o userCalms
     .then(response => response.data )
   }
 
@@ -50,6 +51,10 @@ export default class AuthServices {
 
   removeGoal = (goalId) =>{
     return this.service.delete('/removeGoal', {data: {goalId:goalId }})
+    .then(response => response.data)
+  }
+  addGoals = (title, description, user) =>{
+    return this.service.post('/addGoals', {title, description, user})
     .then(response => response.data)
   }
 }

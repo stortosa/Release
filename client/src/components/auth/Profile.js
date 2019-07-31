@@ -34,7 +34,7 @@ class Profile extends Component {
         <Link to="/calm" className="">Calm</Link>
         <Link to="/AddGoal" className="">Add Goal</Link>
         <Link to="/fear" className="">Fear</Link>
-        <Link to="/addRecord" className="">Record</Link>
+        <Link to="/Demo" className="">Record</Link>
 
         {/* <Link to="/happiness" className="">Happiness</Link>
         <Link to="/rage" className="">Rage</Link>

@@ -9,7 +9,8 @@ import AuthServices from './service/Services';
 import Navbar from './components/Navbar';
 import UserCalm from './components/user-calm';
 import AddGoal from './components/goals/AddGoal';
-import Record from './components/Record';
+// import Record from './components/Demo';
+import Demo from './components/Demo'
 // import Fear from './components/emotions/fear/Fear';
 // import Happiness from './components/emotions/happiness/Happiness';
 // import Rage from './components/emotions/rage/Rage';
@@ -46,6 +47,21 @@ class App extends Component {
       })
   }
 
+  fetchUser = ()=>{
+    this.service.loggedin()
+    .then((data)=>{
+      if(data!=""){
+        this.setState({...this.state,loggedInUser:data})
+      }
+    })
+  }
+
+  componentDidMount = ()=>{
+    this.fetchUser()
+  }
+
+  
+
   render() {
     // this.fetchUser()
 
@@ -61,8 +77,8 @@ class App extends Component {
               <Switch>
                 <Route exact path='/profile' render={() => <Profile logout={this.logout} {...this.state.loggedInUser} />} />
                 <Route exact path='/calm' render={() => <UserCalm logout={this.logout} {...this.state.loggedInUser} />} />
-                <Route exact paht='/addGoal' render={() => <AddGoal logout={this.logout} {...this.state.loggedInUser} />} />
-                <Route exact paht='/demo' render={() => <Record logout={this.logout} {...this.state.loggedInUser} />} />
+                <Route exact path='/addGoal' render={() => <AddGoal logout={this.logout} {...this.state.loggedInUser} />} />
+                <Route exact path='/demo' render={() => <Demo logout={this.logout} {...this.state.loggedInUser} />} />
 
                 {/* <Route exact path='/fear' render={() => <Fear logout={this.logout} />} />
                 <Route exact path='/happiness' render={() => <Happiness logout={this.logout} />} />

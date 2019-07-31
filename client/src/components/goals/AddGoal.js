@@ -22,12 +22,12 @@ export default class AddGoal extends Component {
     const description = this.state.description;
     const user = this.state.loggedInUser
 
-    axios.post("http://localhost:5000/auth/addGoals", { title, description, user })
+    this.service.addGoals(title, description, user)
       .then((responsefromApi) => {
 
         let cloneallGoals = [...this.state.allGoals];
 
-        cloneallGoals.unshift(responsefromApi.data)  //unshift o push
+        cloneallGoals.unshift(responsefromApi)  //unshift o push
         console.log(responsefromApi)
         this.setState({
           ...this.state,
@@ -37,7 +37,7 @@ export default class AddGoal extends Component {
         // this.setState({ title: cloneallGoals.data.title, description: cloneallGoals.data.description });
       })
       .catch(error => console.log(error))
-      this.getUserGoals()
+    this.getUserGoals()
   }
 
   getUserGoals = () => {
@@ -76,14 +76,14 @@ export default class AddGoal extends Component {
     }
   }
 
-  deleteGoal = (e, goal_id) =>{
+  deleteGoal = (e, goal_id) => {
     e.preventDefault();
     this.service.removeGoal(goal_id)
-    .then(x =>{
-      // this.setState({
-      //   ...this.state,
-      // })
-    })
+      .then(x => {
+        // this.setState({
+        //   ...this.state,
+        // })
+      })
     this.getUserGoals()
   }
   showAddGoalForm = () => {
@@ -94,7 +94,7 @@ export default class AddGoal extends Component {
           <form onSubmit={this.handleFormSubmit}>
             <label>Title:</label>
             <input type="text" name="title" value={this.state.title} onChange={e => this.handleChange(e)} />
-            
+
             {/* <label>Favourite Color:</label>
             <textarea name="color" value={this.state.color} onChange={e => this.handleChange(e)} /> */}
 
@@ -117,12 +117,12 @@ export default class AddGoal extends Component {
 
         <ol className="goals-list">
           {
-            this.state.allGoals.map(goal =>
-              <li key ={goal._id}>
+            this.state.allGoals.map((goal, idx) =>{
+              return (<li key={idx}>
                 {goal.title}--{goal.description}
                 <button onClick={e => this.deleteGoal(e, goal._id)}> Delete</button>
-              </li>
-            )
+              </li>)
+            })
           }
         </ol>
       </div>
