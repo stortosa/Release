@@ -2,6 +2,7 @@
 
 // To execute this seed, run from the root of the project
 // $ node bin/seeds.js
+require('dotenv').config();
 
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
@@ -15,8 +16,8 @@ const SadnessMod = require("../models/sadness.model");
 const bcryptSalt = 10;
 
 mongoose
-  .connect('mongodb://localhost/Release', { useNewUrlParser: true })
-  .then(x => {
+.connect(process.env.BBDDATLAS, { useNewUrlParser: true })
+.then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
   .catch(err => {
@@ -36,10 +37,7 @@ let users = [
     username: "MiAmol",
     password: bcrypt.hashSync("MiAmol", bcrypt.genSaltSync(bcryptSalt)),
   },
-  {
-    username: "Sito",
-    password: bcrypt.hashSync("Sito", bcrypt.genSaltSync(bcryptSalt)),
-  }
+ 
 ]
 
 User.deleteMany()
@@ -112,82 +110,3 @@ RageMod.deleteMany()
     throw err
   })
 
-
-let fear = [
-  {
-    title: "Las MIEDO",
-    description: "Oye tu MIEDO hombre",
-    ListRecorded: ["MIEDO one", "MIEDO two", "music three"],
-    Task: ["aprendí a calmarme", " y grabar un diario", "lo puedo conseguir"]
-  }
-]
-
-FearMod.deleteMany()
-  .then(() => {
-    return FearMod.create(fear)
-  })
-  .then(fearCreated => {
-    console.log(`${fearCreated.length} fear created with the following id:`);
-    console.log(fearCreated.map(c => c._id));
-  })
-  .then(() => {
-    // Close properly the connection to Mongoose
-    mongoose.disconnect()
-  })
-  .catch(err => {
-    mongoose.disconnect()
-    throw err
-  })
-
-
-let happiness = [
-  {
-    title: "Las FELICIDAD",
-    description: "Oye tu FELICIDAD hombre",
-    ListRecorded: ["FEILICIDAD one", "FELICIDAD two", "music three"],
-    Task: ["aprendí a calmarme", " y grabar un diario", "lo puedo conseguir"]
-  }
-]
-
-HappinessMod.deleteMany()
-  .then(() => {
-    return HappinessMod.create(happiness)
-  })
-  .then(happinessCreated => {
-    console.log(`${happinessCreated.length} happiness created with the following id:`);
-    console.log(happinessCreated.map(c => c._id));
-  })
-  .then(() => {
-    // Close properly the connection to Mongoose
-    mongoose.disconnect()
-  })
-  .catch(err => {
-    mongoose.disconnect()
-    throw err
-  })
-
-let sadness = [
-  {
-    title: "Las TRISTEZA",
-    description: "Oye tu TRISTEZ hombre",
-    ListRecorded: ["TRISTEZ one", "TRISTEZA two", "music three"],
-    Task: ["aprendí a calmarme", " y grabar un diario", "lo puedo conseguir"]
-  }
-]
-
-SadnessMod.deleteMany()
-  .then(() => {
-    return SadnessMod.create(sadness)
-  })
-  .then(sadnessCreated => {
-    console.log(`${sadnessCreated.length} sadness created with the following id:`);
-    console.log(sadnessCreated.map(c => c._id));
-  })
-  .then(() => {
-    // Close properly the connection to Mongoose
-    mongoose.disconnect()
-  })
-  .catch(err => {
-    mongoose.disconnect()
-    throw err
-  })

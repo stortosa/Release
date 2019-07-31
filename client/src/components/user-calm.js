@@ -22,12 +22,12 @@ export default class UserCalm extends Component {
     const description = this.state.description;
     const user = this.state.loggedInUser
 
-    axios.post("http://localhost:5000/auth/addCalms", { title, description, user })
-      .then((responsefromApi) => {
+    this.service.addCalms(title, description, user)
+    .then((responsefromApi) => {
 
         let cloneallCamls = [...this.state.allCalms];
 
-        cloneallCamls.unshift(responsefromApi.data)  //unshift o push
+        cloneallCamls.unshift(responsefromApi)  //unshift o push
         console.log(responsefromApi)
         this.setState({
           ...this.state,
@@ -57,7 +57,6 @@ export default class UserCalm extends Component {
       })
     this.getUserCalms()
 
-    // console.log(this.state.loggedInUser)
   }
 
   onChange = (event) => {
@@ -109,15 +108,6 @@ export default class UserCalm extends Component {
             )
           }
         </ol>
-        {/* <div>
-          {this.state.allCalms.map((calm, idx) => (
-            <ul key={idx}>
-              <li>{calm.title}</li>
-              <li>{calm.description}</li>
-            </ul>
-
-          ))}
-        </div> */}
         <h1>DON´T FORGET IT</h1>
       </div>
     )

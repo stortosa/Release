@@ -7,7 +7,8 @@ const recSchema = new Schema({
     ref: "User"
   },
   title: String,
-  ListRecorded:[String],
+  listRecorded:[String],
+
 },
   {
     timestamps: {
@@ -16,5 +17,5 @@ const recSchema = new Schema({
     }
   });
 
-const Record = mongoose.model('Record', recSchema);
-module.exports = Record;
+const Demo = mongoose.model('Demo', recSchema);
+module.exports = Demo;
