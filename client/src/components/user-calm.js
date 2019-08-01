@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
 import AuthServices from '../service/Services';
-// import { useSprings, useTransition, animated } from 'react-spring'
+import { Link } from 'react-router-dom';
 
 
 export default class UserCalm extends Component {
@@ -88,12 +87,11 @@ export default class UserCalm extends Component {
     if (this.state.isShowing) {
       return (
         <div>
-          <h2>What do you change??</h2>
           <form className="" onSubmit={this.onSubmit}>
-            <label>Write your negativ quote/thing::</label>
+            <label>Negative words:</label>
             <textarea name="title" value={this.state.title} onChange={e => this.onChange(e)} />
 
-            <label>Change into a POSITIV quote/thing::</label>
+            <label>Change to positive words:</label>
             <textarea name="description" value={this.state.description} onChange={e => this.onChange(e)} />
 
             <input type="submit" value="Submit" />
@@ -107,20 +105,32 @@ export default class UserCalm extends Component {
     return (
       <div className="">
         <h1>What do you change??</h1>
-        <hr />
         <button onClick={() => this.toggleForm()}> Add Calm </button>
         {this.showAddCalmForm()}
         <div className="ContCalmList">
-          <ol className="todoListMain">
-            {
-              this.state.allCalms.map(calm =>
-                <li className="theList" key={calm._id}>
-                  {calm.title}--{calm.description}
-                  <button onClick={e => this.deleteCalm(e, calm._id)}> Say it Bye Bye!!</button>
-                </li>
-              )
-            }
-          </ol>
+          <section>
+            <ol className="todoListMain">
+              {
+                this.state.allCalms.map(calm =>
+                  <li className="theList" key={calm._id}>
+                    {calm.title}--{calm.description}
+                    <button onClick={e => this.deleteCalm(e, calm._id)}> Say it Bye Bye!!</button>
+                  </li>
+                )
+              }
+            </ol>
+          </section>
+          <section className="wrapcalm">
+            <div className="linkcalm">
+              <Link to="/profile" style={{ textDecoration: 'none' }}>Profile</Link>
+            </div>
+            <div className="linkcalm">
+              <Link to="/AddGoal" style={{ textDecoration: 'none' }}>Goals and Dreams</Link>
+            </div>
+            <div className="linkcalm">
+              <Link to="/Demo" style={{ textDecoration: 'none' }}>Audio-Daily</Link>
+            </div>
+          </section>
         </div>
       </div>
     )

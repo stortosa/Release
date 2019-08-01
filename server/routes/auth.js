@@ -5,6 +5,8 @@ const User = require("../models/User");
 const Goals = require("../models/goal.model");
 const Calms = require("../models/calm.model");
 const Demo = require("../models/rec.model");
+const HappinessMod = require("../models/happiness.model");
+const uploadCloud = require("../config/cloudinary");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -126,7 +128,8 @@ router.post('/addGoals', (req, res, next) => {
   Goals.create({
     title: req.body.title,
     description: req.body.description,
-    createdBy: req.body.user,
+    color: req.body.color,
+    createdBy: req.user._id,
     // timestamp:
   })
     .then(createdGoal => {
@@ -159,28 +162,15 @@ router.delete('/removeGoal', (req, res, next) => {
     .catch(err => console.log(err));
 });
 
-// //Añandiendo demos de record
-// router.post('/addDemos', (req, res, next) => {
-//   Goals.create({
-//     title: req.body.title,
-//     description: req.body.description,
-//     createdBy: req.body.user,
-//     // timestamp:
-//   })
-//     .then(createdGoal => {
-//       // console.log(createdGoal)
-//       res.json(createdGoal)
-//     })
-// });
-
 //Añadiendo demos
-router.post('/addDemos', (req, res, next)=>{
+router.post('/addDemos', (req, res, next) => {
+  console.log(req.body.song)
   Demo.create({
-    audioSrc: req.body.audioSrc
+    audioSrc: req.body.song
   })
-  .then(createdDemo =>{
-    res.json(createdDemo)
-  })
+    .then(createdDemo => {
+      res.json(createdDemo)
+    })
 })
 
 //Mostrando Demos
@@ -195,7 +185,43 @@ router.get('/userDemos', (req, res, next) => {
     .catch(err => console.log(err));
 });
 
+//borrando demos
+router.delete('/removeDemos', (req, res, next) => {
+  Demo.findByIdAndRemove(req.body.goalId)
+    //   )({
+    //   // createdBy: req.user._id,    
+    // })
+    .then(foundDemo => [
+      res.json(foundDemo)
+    ])
+    .catch(err => console.log(err));
+});
 
-//borrardo demos
+router.post('/happyPhoto', uploadCloud.single('photo'), (req, res, next) => {
+  const imgName = req.user.username
+  const imgPath = req.file.url
+  HappinessMod.create({
+    createdBy: req.user._id,
+    picture: {
+      imgName: imgName,
+      imgPath: imgPath,
+    }
+  })
+    .then((happyimg) => {
+      res.json(happyimg)
+    })
+    .catch(error => {
+      console.log(error);
+    })
+});
 
+router.get('/gethappyPhoto', (req, res, next) => {
+  HappinessMod.find({
+    createdBy: req.user._id,
+  })
+    .then(foundHappypic => {
+      res.json(foundHappypic)
+    })
+    .catch(err => console.log(err));
+});
 module.exports = router;

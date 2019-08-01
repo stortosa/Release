@@ -10,7 +10,7 @@ const recSchema = new Schema({
   recorded:[String],
   audioType: String,
   status: String,
-  audioSrc: String,
+  audioSrc: [],
   timeslice: Number,
 },
   {

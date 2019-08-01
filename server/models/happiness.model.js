@@ -6,10 +6,10 @@ const happinessSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User"
   },
-  title: String,
-  description: String,
-  Task: [String],       //cosas a mejorar.
-  ListRecorded:[String],
+picture: {
+  imgName: String,
+  imgPath: String,
+}  
 
 },
   {

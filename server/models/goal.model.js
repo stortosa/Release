@@ -8,6 +8,7 @@ const goalSchema = new Schema({
   },
   title: String,
   description: String,
+  color: String,
 },
   {
     timestamps: {

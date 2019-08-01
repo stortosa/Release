@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import AudioAnalyser from "react-audio-analyser";
-import AuthService from '../service/Services'
-import Axios from "axios";
+import AuthService from '../service/Services';
+import { Link } from 'react-router-dom';
 
 
 export default class demo extends Component {
@@ -128,6 +128,17 @@ export default class demo extends Component {
             <option value="audio/wav">audio/wav</option>
             <option value="audio/mp3">audio/mp3</option>
           </select>
+        </section>
+        <section className="wrapcalm">
+          <div className="linkcalm">
+            <Link to="/profile" style={{ textDecoration: 'none' }}>Profile</Link>
+          </div>
+          <div className="linkcalm">
+            <Link to="/AddGoal" style={{ textDecoration: 'none' }}>Goals and Dreams</Link>
+          </div>
+          <div className="linkcalm">
+            <Link to="/calm" style={{ textDecoration: 'none' }}>Calm</Link>
+          </div>
         </section>
       </div>
     );

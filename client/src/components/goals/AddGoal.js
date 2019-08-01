@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import axios from 'axios';
 import AuthService from '../../service/Services';
 import ZoomImg from '../ZoomImg';
+import { Link } from 'react-router-dom';
 import Goals from './Goals';
 
 export default class AddGoal extends Component {
@@ -172,6 +173,18 @@ export default class AddGoal extends Component {
             <ZoomImg src={this.state.happypic} alt="" />
           </React.Fragment>
           : ""}
+
+        <section className="wrapcalm">
+          <div className="linkcalm">
+            <Link to="/profile" style={{ textDecoration: 'none' }}>Profile</Link>
+          </div>
+          <div className="linkcalm">
+            <Link to="/calm" style={{ textDecoration: 'none' }}>Calm</Link>
+          </div>
+          <div className="linkcalm">
+            <Link to="/Demo" style={{ textDecoration: 'none' }}>Audio-Daily</Link>
+          </div>
+        </section>
       </div>
     )
   }

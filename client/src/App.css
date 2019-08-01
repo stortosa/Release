@@ -59,13 +59,18 @@
   justify-content: space-evenly;
 }
 
-.nav-style button{
+.nav-style button {
   background: #f58b73;
   color: rgb(238, 231, 231);
   font-size: 30px;
   border-radius: 5px;
   width: 150px;
   height: 50px;
+}
+.nav-style button:hover {
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0);
+  background: #f54c26;
+  cursor: pointer;
 }
 /* SCSS del LOGIN */
 
@@ -147,7 +152,6 @@
   font-weight: bold;
   text-decoration: none;
 }
-
 
 /** RECORDER*/
 .btn-box {
@@ -269,18 +273,54 @@ img.zoomed {
   transform: translateZ(0);
 }
 
-.linkProfile{
+.linkProfile {
   display: flex;
   justify-content: space-evenly;
   padding: 20px;
   margin: 10px;
-  color:white;
+  color: white;
   background: #93ff33;
   border-radius: 2px;
   cursor: pointer;
   text-decoration: none;
 }
 
+.linkProfile:hover {
+  background-color: #c8e61e;
+  border: 0.5px solid #3dad09;
+  color: rgb(247, 216, 216);
+  cursor: pointer;
+}
+
 .wrap {
   flex-wrap: wrap;
+}
+
+.wrapcalm {
+  /* flex-wrap: wrap; */
+  flex-direction: row;
+
+}
+.linkcalm {
+  display: flex;
+  width: 200px;
+  height: 20px;
+  justify-content: space-evenly;
+  padding: 10px;
+  margin: 5px;
+  color: white;
+  background: #48ffd1;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.linkcalm:hover {
+  background-color: #3cf6af;
+  border: 0.5px solid #b6ee9d;
+  color: rgb(247, 216, 216);
+  cursor: pointer;
+}
+.theList button {
+}
+.theList button:hover {
 }
