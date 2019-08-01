@@ -17,25 +17,27 @@ class Profile extends Component {
   }
 
   render() {
-
     return (
       <div>
         <h2>SONRIE</h2>
-        <h3>Lista</h3>
-        <ul>
-          <li>
-            Cosa1
-          </li>
-        </ul>
-
-        <Link to="/calm" className="">Calm</Link>
-        <Link to="/AddGoal" className="">Add Goal</Link>
-        <Link to="/fear" className="">Fear</Link>
-        <Link to="/Demo" className="">Record</Link>
-
-        <button onClick={this.handleLogout}>Logout</button>
+        <h3>Lista Información de lo que puedes hacer en la APP</h3>
+        <section className="wrap">
+          <div className="linkProfile">
+            <Link to="/calm" style={{ textDecoration: 'none' }}>Calm</Link>
+          </div>
+          <div className="linkProfile">
+            <Link to="/AddGoal" style={{ textDecoration: 'none' }}>Add Goal</Link>
+          </div>
+          <div className="linkProfile">
+            <Link to="/fear" style={{ textDecoration: 'none' }}>Fear</Link>
+          </div>
+          <div className="linkProfile">
+            <Link to="/Demo" style={{ textDecoration: 'none' }}>Record</Link>
+          </div>
+        </section>
       </div>
     )
   }
 }
+
 export default Profile;
