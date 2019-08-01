@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AudioAnalyser from "react-audio-analyser";
 import AuthService from '../service/Services'
+import Axios from "axios";
 
 
 export default class demo extends Component {
@@ -8,11 +9,7 @@ export default class demo extends Component {
     super(props)
     this.state = {
       status: null,
-      // title: "",
-      // recorded: "",
-      // audioType: "",
-      // audioSrc: "",
-      // timeslice: "",
+      audioSrc: [],
     };
     this.service = new AuthService();
   }
@@ -35,14 +32,14 @@ export default class demo extends Component {
     }
   }
 
-  deleteDemo = (e, demo_id) => {
-    e.preventDefault();
-    this.service.removeDemo(demo_id)
-      .then(x => {
+  // deleteDemo = (e, demo_id) => {
+  //   e.preventDefault();
+  //   this.service.removeDemo(demo_id)
+  //     .then(x => {
 
-      })
-    this.getUserDemos()
-  }
+  //     })
+  //   this.getUserDemos()
+  // }
   // de AQUI para abajo Es de la API
 
   componentDidMount() {
@@ -60,6 +57,7 @@ export default class demo extends Component {
     })
   }
 
+
   render() {
     const { status, audioSrc } = this.state;
     const audioProps = {
@@ -74,11 +72,24 @@ export default class demo extends Component {
         console.log("succ pause", e)
       },
       stopCallback: (e) => {
+        let audios = this.state.audioSrc
+        audios.push(window.URL.createObjectURL(e))
+        //poner en auth.js
+        let song = window.URL.createObjectURL(e)
+
+        this.service.addDemos(song)
+          // console.log(song)
+          // .post("/auth/addDemos", { song })
+          .then(createdDemo => {
+            console.log(createdDemo)
+            // res.json(createdDemo)
+          })
+
         this.setState({
-          audioSrc: window.URL.createObjectURL(e)
+          audioSrc: audios
         })
         console.log("succ stop", e)
-        console.log(this.state.audioSrc, "Cgelo de AKI")
+        console.log(this.state.audioSrc, "Cogelo aqui")
         console.log(e)
       },
       onRecordCallback: (e) => {
@@ -92,30 +103,32 @@ export default class demo extends Component {
 
     return (
       <div>
-        <AudioAnalyser {...audioProps}>
-          <div className="btn-box">
-            {status !== "recording" &&
-              <button className="iconfont icon-start" title="开始"
-                onClick={() => this.controlAudio("recording")}>开始</button>}
-            {status === "recording" &&
-              <button className="iconfont icon-pause" title="暂停"
-                onClick={() => this.controlAudio("paused")}>暂停</button>}
-            <button className="iconfont icon-stop" title="停止"
-              onClick={() => this.controlAudio("inactive")}>停止</button>
-          </div>
-        </AudioAnalyser>
-        <p>选择输出格式</p>
-        <select name="" id="" onChange={(e) => this.changeScheme(e)} value="audioType">
-          {/* value={audioType} */}
-          <option value="audio/webm">audio/webm（default）</option>
-          <option value="audio/wav">audio/wav</option>
-          <option value="audio/mp3">audio/mp3</option>
-        </select>
-        <button onClick={e => this.deleteDemo(e, demo._id)}> Save Rec</button>
-        <button onClick={e => this.deleteDemo(e, demo._id)}> Delete Rec</button>
-        <button onClick={() => this.toggleForm()}> Add Rec </button>
-        {/* {this.showAddGoalForm()} */}
-
+        <h1>Audio-Daily</h1>
+        <section className="record">
+          <AudioAnalyser {...audioProps}>
+            <div className="btn-box">
+              {status !== "recording" &&
+                <button className="iconfont icon-start" title="Record"  //开始
+                  onClick={() => this.controlAudio("recording")}>Record</button>}
+              {status === "recording" &&
+                <button className="iconfont icon-pause" title="Pause"  //暂停
+                  onClick={() => this.controlAudio("paused")}>Pause</button>}
+              <button className="iconfont icon-stop" title="Stop"   //停止
+                onClick={() => this.controlAudio("inactive")}>Stop</button>
+            </div>
+          </AudioAnalyser>
+          {this.state.audioSrc.map((song, idx) =>
+            <a href={song}>{"song " + idx}</a>
+          )}
+          {/* 选择输出格式 */}
+          <p>Record your tale</p>
+          <select name="" id="" onChange={(e) => this.changeScheme(e)} value="audioType">
+            {/* value={audioType} */}
+            <option value="audio/webm">audio/webm（default）</option>
+            <option value="audio/wav">audio/wav</option>
+            <option value="audio/mp3">audio/mp3</option>
+          </select>
+        </section>
       </div>
     );
   }

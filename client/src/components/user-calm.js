@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import AuthServices from '../service/Services';
-import { useTransition, animated } from 'react-spring'
+// import { useSprings, useTransition, animated } from 'react-spring'
 
 
 export default class UserCalm extends Component {
@@ -15,7 +15,6 @@ export default class UserCalm extends Component {
       allCalms: []
     };
     this.service = new AuthServices();
-
   }
 
   onSubmit = (event) => {
@@ -34,7 +33,6 @@ export default class UserCalm extends Component {
         this.setState({
           ...this.state,
           allCalms: cloneallCamls,
-
         })
       })
       .catch(error => console.log(error))
@@ -59,7 +57,6 @@ export default class UserCalm extends Component {
         })
       })
     this.getUserCalms()
-
   }
 
   onChange = (event) => {
@@ -91,11 +88,12 @@ export default class UserCalm extends Component {
     if (this.state.isShowing) {
       return (
         <div>
-          <h3>Add Calm</h3>
+          <h2>What do you change??</h2>
           <form className="" onSubmit={this.onSubmit}>
-            <label>Title:</label>
-            <input type="text" name="title" value={this.state.title} onChange={e => this.onChange(e)} />
-            <label>Description:</label>
+            <label>Write your negativ quote/thing::</label>
+            <textarea name="title" value={this.state.title} onChange={e => this.onChange(e)} />
+
+            <label>Change into a POSITIV quote/thing::</label>
             <textarea name="description" value={this.state.description} onChange={e => this.onChange(e)} />
 
             <input type="submit" value="Submit" />
@@ -103,12 +101,12 @@ export default class UserCalm extends Component {
         </div>
       )
     }
-  }
+  };
 
   render() {
     return (
       <div className="">
-        <h1>Welcome to Calm</h1>
+        <h1>What do you change??</h1>
         <hr />
         <button onClick={() => this.toggleForm()}> Add Calm </button>
         {this.showAddCalmForm()}
@@ -118,23 +116,12 @@ export default class UserCalm extends Component {
               this.state.allCalms.map(calm =>
                 <li className="theList" key={calm._id}>
                   {calm.title}--{calm.description}
-                  <button onClick={e => this.deleteCalm(e, calm._id)}> Delete</button>
+                  <button onClick={e => this.deleteCalm(e, calm._id)}> Say it Bye Bye!!</button>
                 </li>
               )
             }
           </ol>
-          useTransition(items, items => items.id, {
-            enter: item => [{opacity: item.opacity, height: item.height}, {life: '100%'}],
-  leave: item => async (next, cancel) => {
-            await next({ life: '0%' })
-    await next({opacity: 0})
-    await next({height: 0})
-              },
-  from: {life: '0%', opacity: 0, height: 0}
-                })
         </div>
-
-        <h1>DON´T FORGET IT</h1>
       </div>
     )
   }
