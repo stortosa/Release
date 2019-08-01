@@ -41,28 +41,28 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Signup</h2>
-        <form onSubmit={this.handleFormSubmit}>
-          <fieldset>
-            <label>Username:</label>
-            <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
-          </fieldset>
+      <div >
+        <div className="loginBox">
+          <h2>Signup</h2>
+          <form onSubmit={this.handleFormSubmit}>
+            <fieldset>
+              <label>Username:</label>
+              <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
+            </fieldset>
 
-          <fieldset>
-            <label>Password:</label>
-            <input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-          </fieldset>
+            <fieldset>
+              <label>Password:</label>
+              <input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
+            </fieldset>
 
-          <input type="submit" value="Signup" />
-        </form>
-
+            <input type="submit" value="Signup" />
+          </form>
+        </div>
         <h1>{this.state.error ? 'Error' : ''}</h1>
 
         <p>Already have account?
-          <Link to={"/login"}> Login</Link>
+                <Link to={"/login"}> Login</Link>
         </p>
-
       </div>
     )
   }

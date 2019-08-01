@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
-import AuthService from '../../service/Services'
+import AuthService from '../../service/Services';
+import ZoomImg from '../ZoomImg';
 import Goals from './Goals';
 
 export default class AddGoal extends Component {
@@ -12,7 +13,9 @@ export default class AddGoal extends Component {
       color: "",
       isShowing: false,
       loggedInUser: null,
-      allGoals: []
+      allGoals: [],
+      file: null,
+      happypic: null,
     };
     this.service = new AuthService();
   }
@@ -52,6 +55,16 @@ export default class AddGoal extends Component {
         })
       })
   }
+  getHappypic() {
+    this.service.getHappypic()
+      .then(response => {
+        console.log(response)
+        this.setState({
+          ...this.state,
+          happypic: response[0].picture.imgPath
+        })
+      })
+  }
 
   componentDidMount() {
     this.service.loggedin()
@@ -61,6 +74,7 @@ export default class AddGoal extends Component {
         })
       })
     this.getUserGoals()
+    this.getHappypic()
     // console.log(this.state.loggedInUser)
   }
 
@@ -89,6 +103,26 @@ export default class AddGoal extends Component {
     this.getUserGoals()
   }
 
+  handlePhotoSubmit(e) {
+    e.preventDefault()
+    this.service.addHappyPicture(this.state.file)
+      .then(response => {
+        console.log(response)
+        this.setState({
+          ...this.state,
+          file: null,
+          happypic: response.picture.imgPath,
+        });
+      })
+  }
+
+  handlePhotoChange(e) {
+    this.setState({
+      ...this.state,
+      file: e.target.files[0]
+    })
+  }
+
   showAddGoalForm = () => {
     if (this.state.isShowing) {
       return (
@@ -105,6 +139,11 @@ export default class AddGoal extends Component {
             <textarea name="color" value={this.state.color} onChange={e => this.handleChange(e)} />
 
             <input type="submit" value="Submit" />
+          </form>
+
+          <form onSubmit={(e) => this.handlePhotoSubmit(e)}>
+            <input type="file" onChange={(e) => this.handlePhotoChange(e)} /> <br />
+            <button type="submit">Update the photo</button>
           </form>
         </div>
       )
@@ -128,6 +167,11 @@ export default class AddGoal extends Component {
             })
           }
         </ol>
+        {(this.state.happypic) ?
+          <React.Fragment>
+            <ZoomImg src={this.state.happypic} alt="" />
+          </React.Fragment>
+          : ""}
       </div>
     )
   }

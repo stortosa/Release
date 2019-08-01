@@ -104,7 +104,8 @@ export default class demo extends Component {
     return (
       <div>
         <h1>Audio-Daily</h1>
-        <section className="record">
+        <section className="recordBox">
+          <h3>Tellme you day, please</h3>
           <AudioAnalyser {...audioProps}>
             <div className="btn-box">
               {status !== "recording" &&
@@ -121,7 +122,6 @@ export default class demo extends Component {
             <a href={song}>{"song " + idx}</a>
           )}
           {/* 选择输出格式 */}
-          <p>Record your tale</p>
           <select name="" id="" onChange={(e) => this.changeScheme(e)} value="audioType">
             {/* value={audioType} */}
             <option value="audio/webm">audio/webm（default）</option>

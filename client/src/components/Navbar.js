@@ -17,14 +17,10 @@ class Navbar extends Component {
       )
     } else {
       return (
-        <div>
-          <nav className="nav-style">
-            <ul>
-              <li><Link to='/signup'>Signup</Link></li>
-              <li><Link to='/login'>Login</Link></li>
-            </ul>
-          </nav>
-        </div>
+        <nav className="nav-style-not">
+          <Link to='/signup'>Signup</Link>
+          <Link to='/login'>Login</Link>
+        </nav>
       )
     }
   }

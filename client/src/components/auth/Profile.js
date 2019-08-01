@@ -24,21 +24,14 @@ class Profile extends Component {
         <h3>Lista</h3>
         <ul>
           <li>
-            xxxxxxx          </li>
-          <li>
-            yyyyyyy          </li>
-          <li>
-            zzzzzzz          </li>
+            Cosa1
+          </li>
         </ul>
 
         <Link to="/calm" className="">Calm</Link>
         <Link to="/AddGoal" className="">Add Goal</Link>
         <Link to="/fear" className="">Fear</Link>
         <Link to="/Demo" className="">Record</Link>
-
-        {/* <Link to="/happiness" className="">Happiness</Link>
-        <Link to="/rage" className="">Rage</Link>
-        <Link to="/sadness" className="">Sadness</Link> */}
 
         <button onClick={this.handleLogout}>Logout</button>
       </div>

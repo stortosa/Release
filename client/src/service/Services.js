@@ -47,8 +47,8 @@ export default class AuthServices {
       .then(response => response.data)
   }
 
-  addGoals = (title, description, user) => {
-    return this.service.post('/addGoals', { title, description, user })
+  addGoals = (title, description, color,user) => {
+    return this.service.post('/addGoals', { title, description, color, user })
       .then(response => response.data)
   }
   userGoals = () => {
@@ -70,5 +70,19 @@ export default class AuthServices {
       .then(response => response.data)
   }
 
-  
+  addHappyPicture = (file) => {
+    const formData = new FormData();
+    formData.append("photo", file)
+    return this.service.post('/happyPhoto', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+      .then(response => response.data)
+  }
+
+  getHappypic = () => {
+    return this.service.get('/gethappyPhoto')
+      .then(response => response.data)
+  }
 }
