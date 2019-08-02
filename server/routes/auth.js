@@ -117,9 +117,9 @@ router.get('/userCalms', (req, res, next) => {
 //borrando calms
 router.delete('/removeCalms', (req, res, next) => {
   Calms.findByIdAndRemove(req.body.calmId)
-    .then(foundCalm => [
+    .then(foundCalm => {
       res.json(foundCalm)
-    ])
+    })
     .catch(err => console.log(err));
 });
 
@@ -143,10 +143,10 @@ router.get('/userGoals', (req, res, next) => {
   Goals.find({
     createdBy: req.user._id,
   })
-    .then(foundGoal => [
+    .then(foundGoal => {
       res.json(foundGoal)
 
-    ])
+    })
     .catch(err => console.log(err));
 });
 
@@ -156,9 +156,9 @@ router.delete('/removeGoal', (req, res, next) => {
     //   )({
     //   // createdBy: req.user._id,    
     // })
-    .then(foundGoal => [
+    .then(foundGoal => {
       res.json(foundGoal)
-    ])
+    })
     .catch(err => console.log(err));
 });
 
@@ -178,10 +178,10 @@ router.get('/userDemos', (req, res, next) => {
   Demo.find({
     createdBy: req.user._id,
   })
-    .then(foundDemo => [
+    .then(foundDemo => {
       res.json(foundDemo)
 
-    ])
+    })
     .catch(err => console.log(err));
 });
 
@@ -191,9 +191,9 @@ router.delete('/removeDemos', (req, res, next) => {
     //   )({
     //   // createdBy: req.user._id,    
     // })
-    .then(foundDemo => [
+    .then(foundDemo => {
       res.json(foundDemo)
-    ])
+    })
     .catch(err => console.log(err));
 });
 
