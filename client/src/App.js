@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import UserCalm from './components/user-calm';
 import AddGoal from './components/goals/AddGoal';
 import Demo from './components/Demo'
+import Home from './components/Home';
 
 
 class App extends Component {
@@ -84,6 +85,7 @@ class App extends Component {
             <header className="App-header">
               <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
               <Switch>
+                <Route exact path='/' render={() => <Home/>} />
                 <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser} />} />
                 <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />} />
               </Switch>
