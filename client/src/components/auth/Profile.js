@@ -20,7 +20,7 @@ class Profile extends Component {
     return (
       <div>
         <h2>Are you ready for today's homework? </h2>
-        <h3>Lista Información de lo que puedes hacer en la APP</h3>
+        {/* <h3>Lista Información de lo que puedes hacer en la APP</h3> */}
         <section className="wrap">
           <div className="linkProfile">
             <Link to="/calm" style={{ textDecoration: 'none' }}>Calm</Link>

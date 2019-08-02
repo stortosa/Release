@@ -60,6 +60,8 @@ export default class AddGoal extends Component {
     this.service.getHappypic()
       .then(response => {
         console.log(response)
+        if (response[0] === undefined){
+          return}
         this.setState({
           ...this.state,
           happypic: response[0].picture.imgPath
@@ -155,14 +157,14 @@ export default class AddGoal extends Component {
     return (
       <div>
         <hr />
-        <button onClick={() => this.toggleForm()}> Add Dream </button>
+        <button className="boton" onClick={() => this.toggleForm()}> Add Dream </button>
         {this.showAddGoalForm()}
 
         <ol className="goals-list">
           {
             this.state.allGoals.map((goal, idx) => {
               return (<li key={idx}>
-                {goal.title}--{goal.description}--{goal.color}
+                {goal.title}: "{goal.description}" put it your {goal.color}
                 <button onClick={e => this.deleteGoal(e, goal._id)}> Delete</button>
               </li>)
             })

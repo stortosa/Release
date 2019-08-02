@@ -27,6 +27,41 @@
   color: #61dafb;
 } */
 
+/* textarea {
+  outline: none;
+} */
+
+/*textarea*/
+
+textarea {
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 200px;
+  height: 80px;
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
+  border-color: -moz-use-text-color #ffffff #ffffff -moz-use-text-color;
+  border-image: none;
+  border-radius: 6px 6px 6px 6px;
+  border-style: none solid solid none;
+  border-width: medium 1px 1px medium;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+  color: #555555;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  line-height: 1.4em;
+  padding: 5px 8px;
+  transition: background-color 0.2s ease 0s;
+}
+
+textarea:focus {
+  background: none repeat scroll 0 0 #ffffff;
+  outline-width: 0;
+}
+
 /* NAV-BAR*/
 .nav-style {
   background: #ff5733;
@@ -81,15 +116,15 @@
   justify-content: center;
   margin-top: 2%;
   padding: 30px;
-  /* // top: 80%;
-  // left: 50%;
-  // transform: translate(-50%, 0%); */
+  /* // top: 80%;*/
+  /* left: 50%; */
+  /* transform: translate(-50%, 0%); */
   width: 400px;
   height: 400px;
   box-sizing: border-box;
   background: transparent;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.9);
-  /* // border-radius: 15px; */
+  border-radius: 15px;
   transition: 0.5s;
 }
 
@@ -137,12 +172,12 @@
   /* padding-top: 5px; */
   color: #fff;
   font-size: 16px;
-  background: #ff267e;
+  background: #4af516;
   cursor: pointer;
   border-radius: 20px;
 }
 .loginBox input[type="submit"]:hover {
-  background: #efed40;
+  background: #6cf71b;
   color: #262626;
 }
 
@@ -171,12 +206,12 @@
   justify-content: center;
 }
 
-.todoListMain input {
+/* .todoListMain input {
   padding: 10px;
-  font-size: 16px;
+  font-size: 50px;
   border: 2px solid #fff;
-  width: 165px;
-}
+  width: 300px;
+} */
 
 .todoListMain button {
   padding: 10px;
@@ -186,6 +221,7 @@
   background-color: #0066ff;
   color: #fff;
   border: 2px solid #0066ff;
+  border-radius: 5px;
 }
 
 .todoListMain button:hover {
@@ -195,13 +231,15 @@
 }
 
 .todoListMain .theList {
+  display: flex;
+  justify-content: center;
   list-style: none;
   padding-left: 0;
-  width: 250px;
+  width: 500px;
 }
 
 .todoListMain .theList li {
-  color: #333;
+  color: rgb(39, 38, 38);
   background-color: rgba(255, 255, 255, 0.5);
   padding: 15px;
   margin-bottom: 15px;
@@ -248,6 +286,18 @@ ul.theList {
   cursor: pointer;
 }
 
+/*buttons*/
+.boton {
+  width: 100px;
+  height: 50px;
+  justify-content: space-evenly;
+  padding: 5px;
+  margin: 5px;
+  color: white;
+  background: #a9f51b;
+  border-radius: 5px;
+  cursor: pointer;
+}
 /* ZoomIMGE HAPPYE*/
 .ZoomImage {
   cursor: zoom-in;
@@ -299,8 +349,10 @@ img.zoomed {
 .wrapcalm {
   /* flex-wrap: wrap; */
   flex-direction: row;
-
+  width: 400px;
+  align-items: center;
 }
+
 .linkcalm {
   display: flex;
   width: 200px;
@@ -310,7 +362,7 @@ img.zoomed {
   margin: 5px;
   color: white;
   background: #48ffd1;
-  border-radius: 2px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -319,8 +371,4 @@ img.zoomed {
   border: 0.5px solid #b6ee9d;
   color: rgb(247, 216, 216);
   cursor: pointer;
-}
-.theList button {
-}
-.theList button:hover {
 }

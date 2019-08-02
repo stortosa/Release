@@ -72,26 +72,36 @@ export default class demo extends Component {
         console.log("succ pause", e)
       },
       stopCallback: (e) => {
-        let audios = this.state.audioSrc
-        audios.push(window.URL.createObjectURL(e))
-        //poner en auth.js
-        let song = window.URL.createObjectURL(e)
-
-        this.service.addDemos(song)
-          // console.log(song)
-          // .post("/auth/addDemos", { song })
-          .then(createdDemo => {
-            console.log(createdDemo)
-            // res.json(createdDemo)
-          })
-
         this.setState({
-          audioSrc: audios
+            audioSrc: window.URL.createObjectURL(e)
         })
         console.log("succ stop", e)
-        console.log(this.state.audioSrc, "Cogelo aqui")
-        console.log(e)
-      },
+    },
+      // stopCallback: (e) => {
+      //   console.log("succ stop", e)
+      //   //poner en auth.js
+      //   // let song = window.URL.createObjectURL(e)
+      //   // let audios = this.state.audioSrc
+      //   // audios.push(window.URL.createObjectURL(e))
+      //   // this.setState({
+      //   //   audioSrc: window.URL.createObjectURL(e)
+
+      //   // })
+      //   // this.service.addDemos(song)
+      //   //   // console.log(song)
+      //   //   // .post("/auth/addDemos", { song })
+      //   //   .then(createdDemo => {
+      //   //     console.log(createdDemo)
+      //   //     // res.json(createdDemo)
+      //   //   })
+
+      //   this.setState({
+      //     audioSrc: audios
+      //   })
+      //   console.log("succ stop", e)
+      //   console.log(this.state.audioSrc, "Cogelo aqui")
+      //   console.log(e)
+      // },
       onRecordCallback: (e) => {
         console.log("recording", e)
       },
@@ -118,12 +128,13 @@ export default class demo extends Component {
                 onClick={() => this.controlAudio("inactive")}>Stop</button>
             </div>
           </AudioAnalyser>
-          {this.state.audioSrc.map((song, idx) =>
+          {/* {this.state.audioSrc.map((song, idx) =>
             <a href={song}>{"song " + idx}</a>
-          )}
+          )} */}
           {/* 选择输出格式 */}
           <select name="" id="" onChange={(e) => this.changeScheme(e)} value="audioType">
             {/* value={audioType} */}
+
             <option value="audio/webm">audio/webm（default）</option>
             <option value="audio/wav">audio/wav</option>
             <option value="audio/mp3">audio/mp3</option>
