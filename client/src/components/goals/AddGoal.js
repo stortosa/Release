@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+  import React, { Component } from 'react';
 // import axios from 'axios';
 import AuthService from '../../service/Services';
 import ZoomImg from '../ZoomImg';
@@ -164,12 +164,14 @@ export default class AddGoal extends Component {
           {
             this.state.allGoals.map((goal, idx) => {
               return (<li key={idx}>
-                {goal.title}: "{goal.description}" put it your {goal.color}
+                {goal.title}: "{goal.description}"
+                wrap your Image-Dream in your favourite color: {goal.color}
                 <button onClick={e => this.deleteGoal(e, goal._id)}> Delete</button>
               </li>)
             })
           }
         </ol>
+        <h3>Click Image-Dream to do big your dream</h3>
         {(this.state.happypic) ?
           <React.Fragment>
             <ZoomImg src={this.state.happypic} alt="" />

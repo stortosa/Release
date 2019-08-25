@@ -88,10 +88,10 @@ export default class UserCalm extends Component {
       return (
         <div>
           <form className="" onSubmit={this.onSubmit}>
-            <label>Negative words:</label>
+            <label>Write the Negative words:</label>
             <textarea name="title" value={this.state.title} onChange={e => this.onChange(e)} />
 
-            <label>   Change to positive words:</label>
+            <label>   Change to Positive words:</label>
             <textarea name="description" value={this.state.description} onChange={e => this.onChange(e)} />
 
             <input type="submit" value="Submit" />
@@ -104,7 +104,7 @@ export default class UserCalm extends Component {
   render() {
     return (
       <div className="">
-        <h1>What do you change??</h1>
+        <h1>What would you like to change??</h1>
         <button className="boton" onClick={() => this.toggleForm()}> Add Calm </button>
         {this.showAddCalmForm()}
         <div className="ContCalmList">
@@ -113,7 +113,7 @@ export default class UserCalm extends Component {
               {
                 this.state.allCalms.map(calm =>
                   <li className="theList" key={calm._id}>
-                    {calm.title}:=> "{calm.description}".
+                    {calm.title}: ==change==> "{calm.description}".
                     <button onClick={e => this.deleteCalm(e, calm._id)}> Say it Bye Bye!!</button>
                   </li>
                 )

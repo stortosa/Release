@@ -45,12 +45,12 @@ export default class Signup extends Component {
         <div className="loginBox">
           <h2>Signup</h2>
           <form onSubmit={this.handleFormSubmit}>
-            <fieldset>
+            <fieldset className="campo">
               <label>Username:</label>
               <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
             </fieldset>
 
-            <fieldset>
+            <fieldset className="campo">
               <label>Password:</label>
               <input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
             </fieldset>

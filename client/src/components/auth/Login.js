@@ -40,12 +40,12 @@ class Login extends Component {
         <div className="loginBox">
           <h2>Login</h2>
           <form className="" onSubmit={this.handleFormSubmit}>
-            <fieldset>
+            <fieldset className="campo">
               <label>Username:</label>
               <input type="text" name="username" onChange={e => this.handleChange(e)} />
             </fieldset>
 
-            <fieldset>
+            <fieldset className="campo">
               <label>Password:</label>
               <input type="password" name="password" onChange={e => this.handleChange(e)} />
             </fieldset>

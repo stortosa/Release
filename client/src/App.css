@@ -12,7 +12,7 @@
 } */
 
 .App-header {
-  background-color: rgb(70, 206, 251);
+  background-color: rgb(255, 255, 255);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -115,7 +115,7 @@ textarea:focus {
   align-content: center;
   justify-content: center;
   margin-top: 2%;
-  padding: 30px;
+  padding: 10px;
   /* // top: 80%;*/
   /* left: 50%; */
   /* transform: translate(-50%, 0%); */
@@ -186,6 +186,10 @@ textarea:focus {
   font-size: 14px;
   font-weight: bold;
   text-decoration: none;
+}
+.campo {
+  border-radius: 15px;
+  margin:5px;
 }
 
 /** RECORDER*/
@@ -325,12 +329,13 @@ img.zoomed {
 
 .linkProfile {
   display: flex;
+  width: 450px;
   justify-content: space-evenly;
   padding: 20px;
   margin: 10px;
   color: white;
   background: #93ff33;
-  border-radius: 2px;
+  border-radius: 15px;
   cursor: pointer;
   text-decoration: none;
 }
@@ -344,12 +349,15 @@ img.zoomed {
 
 .wrap {
   flex-wrap: wrap;
+  /* text-align: center; */
+  /* align-items: center; */
+  align-content: center;
 }
 
 .wrapcalm {
   /* flex-wrap: wrap; */
   flex-direction: row;
-  width: 400px;
+  width: 200px;
   align-items: center;
 }
 
@@ -372,6 +380,18 @@ img.zoomed {
   color: rgb(247, 216, 216);
   cursor: pointer;
 }
+.linkInfo{
+  display: flex;
+  width: 450px;
+  justify-content: space-evenly;
+  padding: 20px;
+  margin: 10px;
+  color: white;
+  background: #12be63;
+  border-radius: 20px;
+  text-decoration: none;
+}
+
 .home {
   font-size: 80px;
   color: #fff;

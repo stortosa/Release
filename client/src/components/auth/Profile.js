@@ -31,6 +31,18 @@ class Profile extends Component {
           <div className="linkProfile">
             <Link to="/Demo" style={{ textDecoration: 'none' }}>Audio-Daily</Link>
           </div>
+          <div><h3>Coming Soon:</h3></div>
+          <div className="linkProfile">
+            <Link to="/throwUp" style={{ textDecoration: 'none' }}>Throw up</Link>
+          </div>
+          <div className="linkProfile">
+            <Link to="/Hobby" style={{ textDecoration: 'none' }}>Hobby</Link>
+          </div>
+          <div className="linkInfo">This application has been designed to devote 5 to 10 minutes a day.
+          Spend time with yourself, your ideas, hobbies and dreams.
+          Based on several basic NLP exercises and with enormous potential to create
+          a multitude of exercises for people who want to use the app they can practice daily.
+          </div>
         </section>
       </div>
     )
