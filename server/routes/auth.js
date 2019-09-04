@@ -197,6 +197,7 @@ router.delete('/removeDemos', (req, res, next) => {
     .catch(err => console.log(err));
 });
 
+//Subiendo photo para dreams
 router.post('/happyPhoto', uploadCloud.single('photo'), (req, res, next) => {
   const imgName = req.user.username
   const imgPath = req.file.url
@@ -215,6 +216,7 @@ router.post('/happyPhoto', uploadCloud.single('photo'), (req, res, next) => {
     })
 });
 
+//mostrando la photo subida
 router.get('/gethappyPhoto', (req, res, next) => {
   HappinessMod.find({
     createdBy: req.user._id,
@@ -224,4 +226,5 @@ router.get('/gethappyPhoto', (req, res, next) => {
     })
     .catch(err => console.log(err));
 });
+
 module.exports = router;

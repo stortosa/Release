@@ -3,7 +3,6 @@ import AuthServices from '../../service/Services';
 // import { Switch, Route, withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-
 class Profile extends Component {
   constructor(props) {
     super(props)
@@ -30,6 +29,9 @@ class Profile extends Component {
           </div>
           <div className="linkProfile">
             <Link to="/Demo" style={{ textDecoration: 'none' }}>Audio-Daily</Link>
+          </div>
+          <div className="linkProfile">
+            <Link to="/Dream" style={{ textDecoration: 'none' }}>Dreams</Link>
           </div>
           <div><h3>Coming Soon:</h3></div>
           <div className="linkProfile">

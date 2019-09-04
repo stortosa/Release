@@ -24,8 +24,8 @@ const Image = posed.img({
     left: 0,
     bottom: 0,
     right: 0,
-    width: 600,
-    height: 600,
+    width: 450,
+    height: 450,
     flip: true,
     transition: transition
   },

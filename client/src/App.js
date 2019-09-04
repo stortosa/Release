@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import UserCalm from './components/user-calm';
 import AddGoal from './components/goals/AddGoal';
 import Demo from './components/Demo';
+import Dreams from './components/Dreams';
 import Home from './components/Home';
 import throwUp from './components/throw-up';
 
@@ -73,6 +74,7 @@ class App extends Component {
                 <Route exact path='/calm' render={() => <UserCalm logout={this.logout} {...this.state.loggedInUser} />} />
                 <Route exact path='/addGoal' render={() => <AddGoal logout={this.logout} {...this.state.loggedInUser} />} />
                 <Route exact path='/demo' render={() => <Demo logout={this.logout} {...this.state.loggedInUser} />} />
+                <Route exact paht='/dreams' render={() => <Dreams logout={this.logout} {...this.state.loggedInUser} />} />
                 {/* <Route exact paht='/throwUp' render={() => <throwUp logout ={this.logout}{...this.state.loggedInUser}/>}/> */}
               </Switch>
             </header>
