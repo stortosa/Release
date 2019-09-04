@@ -12,6 +12,7 @@ export default class Dreams extends Component {
       loggedInUser: null,
       file: null,
       happypic: null,
+      allDremas: []
     };
     this.service = new AuthServices();
   }
@@ -74,16 +75,41 @@ export default class Dreams extends Component {
       )
     }
   }
+
+  toggleForm = () => {
+    if (!this.state.isShowing) {
+      this.setState({ isShowing: true });
+    } else {
+      this.setState({ isShowing: false });
+    }
+  }
+
+  deletePhoto = (e, dream_id) => {
+    e.preventDefault();
+    this.service.removeDream(dream_id)
+      .then(x => {
+        // this.setState({
+        //   ...this.state,
+        // })
+      })
+    this.getHappypic()
+  }
+
   render() {
     return (
       <div>
+
         <h3>Click Image-Dream to do big your dream</h3>
         {(this.state.happypic) ?
           <React.Fragment>
             <ZoomImg src={this.state.happypic} alt="" />
           </React.Fragment>
           : ""}
+
+        <button className="boton" onClick={() => this.toggleForm()}> Add Dream </button>
+        {this.showHappyPicForm()}
       </div>
     )
   }
 }
+// poner el delete photo y no me guarda las nuevas
