@@ -414,7 +414,7 @@ img.zoomed {
   width: 200px;
   height: 200px;
   /* background: #cfcfcf; */
-  background-image: url("./emoji-centro.jpg");
+  background-image: url("./sorisa4.png");
   background-size: cover;
   background-position: center;
   border-top: 10px solid #ff6d3f;
@@ -434,10 +434,10 @@ img.zoomed {
   height: 180px;
   /* height: calc(100% +20px); */
   background: #ccc;
-  background-image: url("./emoji-centro.jpg");
+  background-image: url("./sorisa4.png");
   position: absolute;
   background-size: cover;
-  background-position: center;
+  background-position: 0px 0;
   top: -10px;
   left: -85%;
   /* box-sizing: border-box; */
@@ -463,9 +463,9 @@ img.zoomed {
   top: -10px;
   right: -80%;
   /* background: #ccc; */
-  background-image: url("./emoji-centro.jpg");
+  background-image: url("./sorisa4.png");
   background-size: cover;
-  background-position: center; /*coger de la web*/
+  background-position: -200px 0px; 
   border-top: 10px solid #ff8a65;
   border-bottom: 10px solid #ff8a65;
   border-right: 10px solid #ff8a65;
