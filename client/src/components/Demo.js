@@ -32,14 +32,6 @@ export default class demo extends Component {
     }
   }
 
-  // deleteDemo = (e, demo_id) => {
-  //   e.preventDefault();
-  //   this.service.removeDemo(demo_id)
-  //     .then(x => {
-
-  //     })
-  //   this.getUserDemos()
-  // }
   // de AQUI para abajo Es de la API
 
   componentDidMount() {

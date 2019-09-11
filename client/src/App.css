@@ -411,10 +411,10 @@ img.zoomed {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) skewY(0deg) rotateY(0deg);
-  width: 300px;
+  width: 200px;
   height: 200px;
-  background: #262626;
-  /* background: url(); */
+  /* background: #cfcfcf; */
+  background-image: url("./emoji-centro.jpg");
   background-size: cover;
   background-position: center;
   border-top: 10px solid #ff6d3f;
@@ -425,21 +425,22 @@ img.zoomed {
 
 .fold:hover{
   transform: translate(-50%, -50%) skewY(15deg) rotateY(3deg);
-
 }
 
 .fold:before {
-  content: '';
+  content: ' ';
   position: absolute;
   width: 80%;
-  height: calc(100% +20px);
+  height: 180px;
+  /* height: calc(100% +20px); */
   background: #ccc;
-  /* background: url(); */
+  background-image: url("./emoji-centro.jpg");
+  position: absolute;
   background-size: cover;
   background-position: center;
   top: -10px;
-  left: -80%;
-  box-sizing: border-box;
+  left: -85%;
+  /* box-sizing: border-box; */
   border-top: 10px solid #ff8a65;
   border-bottom: 10px solid #ff8a65;
   border-left: 10px solid #ff8a65;
@@ -457,11 +458,12 @@ img.zoomed {
   content: '';
   position: absolute;
   width: 80%;
-  height: calc(100% +20px);
+  height: 200px;
+  /* height: calc(100% +20px); */
   top: -10px;
   right: -80%;
-  background: #ccc;
-  /* background: url(); */
+  /* background: #ccc; */
+  background-image: url("./emoji-centro.jpg");
   background-size: cover;
   background-position: center; /*coger de la web*/
   border-top: 10px solid #ff8a65;
