@@ -77,31 +77,7 @@ export default class demo extends Component {
         })
         console.log("succ stop", e)
     },
-      // stopCallback: (e) => {
-      //   console.log("succ stop", e)
-      //   //poner en auth.js
-      //   // let song = window.URL.createObjectURL(e)
-      //   // let audios = this.state.audioSrc
-      //   // audios.push(window.URL.createObjectURL(e))
-      //   // this.setState({
-      //   //   audioSrc: window.URL.createObjectURL(e)
 
-      //   // })
-      //   // this.service.addDemos(song)
-      //   //   // console.log(song)
-      //   //   // .post("/auth/addDemos", { song })
-      //   //   .then(createdDemo => {
-      //   //     console.log(createdDemo)
-      //   //     // res.json(createdDemo)
-      //   //   })
-
-      //   this.setState({
-      //     audioSrc: audios
-      //   })
-      //   console.log("succ stop", e)
-      //   console.log(this.state.audioSrc, "Cogelo aqui")
-      //   console.log(e)
-      // },
       onRecordCallback: (e) => {
         console.log("recording", e)
       },
@@ -128,10 +104,7 @@ export default class demo extends Component {
                 onClick={() => this.controlAudio("inactive")}>Stop</button>
             </div>
           </AudioAnalyser>
-          {/* {this.state.audioSrc.map((song, idx) =>
-            <a href={song}>{"song " + idx}</a>
-          )} */}
-          {/* 选择输出格式 */}
+
           <select name="" id="" onChange={(e) => this.changeScheme(e)} value="audioType">
             {/* value={audioType} */}
 
