@@ -1,4 +1,4 @@
-  import React, { Component } from 'react';
+import React, { Component } from 'react';
 // import axios from 'axios';
 import AuthService from '../../service/Services';
 import ZoomImg from '../ZoomImg';
@@ -19,6 +19,7 @@ export default class AddGoal extends Component {
       happypic: null,
     };
     this.service = new AuthService();
+    // this.handleClick = this.handleClick.bind(this);
   }
 
   handleFormSubmit = (event) => {
@@ -60,8 +61,9 @@ export default class AddGoal extends Component {
     this.service.getHappypic()
       .then(response => {
         console.log(response)
-        if (response[0] === undefined){
-          return}
+        if (response[0] === undefined) {
+          return
+        }
         this.setState({
           ...this.state,
           happypic: response[0].picture.imgPath
@@ -126,6 +128,11 @@ export default class AddGoal extends Component {
     })
   }
 
+
+  // handleClick() {
+  //   console.log('EFFORT, CONSTANCY, HAPPINESS');
+  // }
+
   showAddGoalForm = () => {
     if (this.state.isShowing) {
       return (
@@ -157,6 +164,8 @@ export default class AddGoal extends Component {
     return (
       <div>
         <hr />
+        {/* <button onClick={this.handleClick}>Push</button>; */}
+
         <button className="boton" onClick={() => this.toggleForm()}> Add Dream </button>
         {this.showAddGoalForm()}
 
@@ -178,7 +187,7 @@ export default class AddGoal extends Component {
           </React.Fragment>
           : ""}
 
-        <section className="wrapcalm">
+        <section className="">
           <div className="linkcalm">
             <Link to="/profile" style={{ textDecoration: 'none' }}>Profile</Link>
           </div>

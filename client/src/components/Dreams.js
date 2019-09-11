@@ -102,7 +102,7 @@ export default class Dreams extends Component {
         <h3>Click Image-Dream to do big your dream</h3>
         {(this.state.happypic) ?
           <React.Fragment>
-            <ZoomImg src={this.state.happypic} alt="" />
+            <ZoomImg src={this.state.happypic} alt=""  />
           </React.Fragment>
           : ""}
 

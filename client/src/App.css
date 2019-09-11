@@ -362,6 +362,8 @@ img.zoomed {
   align-items: center;
 }
 
+
+
 .linkcalm {
   display: flex;
   width: 200px;
@@ -370,7 +372,7 @@ img.zoomed {
   padding: 10px;
   margin: 5px;
   color: white;
-  background: #48ffd1;
+  background: #1d8eda;
   border-radius: 5px;
   cursor: pointer;
 }

@@ -83,6 +83,7 @@ export default class UserCalm extends Component {
     this.getUserCalms()
   }
 
+
   showAddCalmForm = () => {
     if (this.state.isShowing) {
       return (
@@ -104,7 +105,7 @@ export default class UserCalm extends Component {
   render() {
     return (
       <div className="">
-        <h1>What would you like to change??</h1>
+        <h1>What do you want to change??</h1>
         <button className="boton" onClick={() => this.toggleForm()}> Add Calm </button>
         {this.showAddCalmForm()}
         <div className="ContCalmList">
